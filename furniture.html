@@ -215,6 +215,29 @@
         .meta-item .value {
             font-weight: bold;
         }
+
+        /* 반응형 스타일 */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 20px;
+                border-radius: 0;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.3em;
+            }
+            .project-meta {
+                grid-template-columns: 1fr;
+            }
+            .header, .footer {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>

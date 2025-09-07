@@ -229,6 +229,9 @@
             h2 {
                 font-size: 1.3em;
             }
+            p, li {
+                font-size: 0.98em;
+            }
             .project-meta {
                 grid-template-columns: 1fr;
             }
@@ -236,6 +239,30 @@
                 flex-direction: column;
                 gap: 10px;
                 padding: 15px;
+                text-align: center;
+            }
+
+            /* 콘텐츠 리스트 (싱크볼, 상판 설명 등) */
+            ul:not(.spec-list) li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            ul:not(.spec-list) li strong {
+                min-width: auto;
+                margin-bottom: 2px;
+                background-color: rgba(0,0,0,0.05);
+                padding: 2px 6px;
+                border-radius: 4px;
+            }
+
+            /* 치수 리스트 */
+            .spec-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+                padding-top: 10px;
+                padding-bottom: 10px;
             }
         }
     </style>

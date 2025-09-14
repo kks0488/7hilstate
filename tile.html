@@ -22,6 +22,13 @@
     .meta-item { display:flex; flex-direction:column; }
     .meta-item .label { font-size:.9em; color:#888; margin-bottom:4px; }
     .meta-item .value { font-weight:700; }
+    .image-section { text-align:center; margin:30px 0 40px; }
+    .image-section img { width:100%; max-width:100%; height:auto; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,.1); display:block; }
+    .caption { font-size:0.9em; color:rgba(0,0,0,0.55); margin-top:10px; }
+    .spec-list { margin:12px 0 0; padding:0; list-style:none; }
+    .spec-list li { display:flex; justify-content:space-between; gap:16px; padding:6px 0; background:transparent; border-radius:0; margin-bottom:4px; border-bottom:1px dashed rgba(0,0,0,0.12); }
+    .spec-list .label { font-weight:700; }
+    .note { font-size:0.95em; color:#333; margin-top:20px; padding:15px; background-color:rgba(0,0,0,0.04); border-left:5px solid rgba(0,0,0,0.2); border-radius:5px; }
   </style>
 </head>
 <body>
@@ -59,21 +66,96 @@
     </ul>
 
     <h2>III. 욕실별/공간별 지시</h2>
+
+    <div class="note"><strong>* 책임 시공 요청:</strong> 욕실 공정(철거·설비·방수·타일) 일괄 책임 시공.</div>
+
     <h3>거실 욕실</h3>
+    <div class="image-section">
+      <img src="images/거실타일.png" alt="거실 욕실">
+      <p class="caption">거실 욕실 타일 시공 영역</p>
+    </div>
+    <ul class="spec-list">
+      <li><span class="label">가로</span><span class="value">2030mm</span></li>
+      <li><span class="label">세로</span><span class="value">1820mm</span></li>
+    </ul>
     <ul>
       <li>샤워부스 단차/라인유가 위치 도면 일치 확인</li>
       <li>매립 수전 박스 수평/높이 규격 준수</li>
     </ul>
+
     <h3>안방 욕실</h3>
+    <div class="image-section">
+      <img src="images/안방타일.png" alt="안방 욕실">
+      <p class="caption">안방 욕실 타일 시공 영역</p>
+    </div>
+    <ul class="spec-list">
+      <li><span class="label">가로</span><span class="value">2290mm</span></li>
+      <li><span class="label">세로</span><span class="value">2320mm</span></li>
+    </ul>
     <ul>
       <li>건식부 콘센트 방수커버 적용</li>
       <li>환풍 덕트 연결 및 역류 방지</li>
     </ul>
-    <h3>현관·전실·발코니·다용도실</h3>
+
+    <hr style="border:0;height:1px;background-color:rgba(0,0,0,0.1);margin:30px 0;">
+    <h2>IV. 추가 타일 공사 범위</h2>
+
+    <h3>현관</h3>
     <ul>
-      <li>현관 미장 높이 거실 마루와 단차 없도록 마감</li>
-      <li>기존 타일 위 덧방 구간은 접착력 프라이머 적용</li>
+      <li><strong>작업 내용:</strong> 지정 영역 타일 철거 후 거실 마루와 단차 없이 미장.</li>
     </ul>
+    <div class="image-section">
+      <img src="images/현관타일.png" alt="현관 타일">
+      <p class="caption">현관 타일 시공 영역</p>
+    </div>
+    <ul class="spec-list">
+      <li><span class="label">가로</span><span class="value">1900mm</span></li>
+      <li><span class="label">세로</span><span class="value">1500mm</span></li>
+    </ul>
+
+    <h3>안방 다용도실</h3>
+    <ul>
+      <li><strong>작업 내용:</strong> 기존 타일 위 덧방 시공.</li>
+    </ul>
+    <div class="image-section">
+      <img src="images/안방다용도실타일.png" alt="안방 다용도실 타일">
+      <p class="caption">안방 다용도실 타일 시공 영역</p>
+    </div>
+    <ul class="spec-list">
+      <li><span class="label">가로</span><span class="value">850mm</span></li>
+      <li><span class="label">세로</span><span class="value">2320mm</span></li>
+    </ul>
+
+    <h3>주방 다용도실</h3>
+    <ul>
+      <li><strong>작업 내용:</strong> 기존 타일 위 덧방 시공.</li>
+    </ul>
+    <div class="image-section">
+      <img src="images/주방다용도실타일.png" alt="주방 다용도실 타일">
+      <p class="caption">주방 다용도실 타일 시공 영역</p>
+    </div>
+    <ul class="spec-list">
+      <li><span class="label">가로</span><span class="value">1000mm</span></li>
+      <li><span class="label">세로</span><span class="value">2700mm</span></li>
+    </ul>
+
+    <h3>발코니</h3>
+    <ul>
+      <li><strong>작업 내용:</strong> 기존 타일 위 덧방 시공.</li>
+    </ul>
+    <div class="image-section">
+      <img src="images/발코니.png" alt="발코니 타일">
+      <p class="caption">발코니 타일 시공 영역</p>
+    </div>
+    <ul class="spec-list">
+      <li><span class="label">가로</span><span class="value">1700mm</span></li>
+      <li><span class="label">세로</span><span class="value">3860mm</span></li>
+    </ul>
+
+    <div class="note" style="border-left-color:#d63031;background-color:rgba(214,48,49,0.05);">
+      <p><strong>[중요] 난방 배관 주의</strong></p>
+      <p>욕실 습식부 바닥 일부 난방 엑셀 파이프 경로 주의. 철거/설비/방수 전 공정에서 안전 시공.</p>
+    </div>
   </div>
   <footer class="footer">
     <div>© 2025 (주) 마크트레이드. All rights reserved.</div>

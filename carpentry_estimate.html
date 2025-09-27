@@ -37,6 +37,15 @@
     .project-overview { padding: 20px; background-color: #f8f9fa; border-radius: 10px; margin-top: 24px; }
     .project-overview h3 { margin: 0 0 8px; font-size: 1.1em; color: var(--color-primary); }
     .project-overview p { margin: 0 0 16px; font-size: 0.95em; }
+    @media (max-width: 767px) {
+      .container { padding: 20px 15px; margin: 20px auto; }
+      h1 { font-size: 1.8em; }
+      h2 { font-size: 1.2em; }
+      h3 { font-size: 1.0em; }
+      .project-meta { grid-template-columns: 1fr; }
+      .task-item { padding: 15px; }
+      .header, .footer { padding: 15px; flex-direction: column; gap: 10px; text-align: center;}
+    }
   </style>
 </head>
 <body>

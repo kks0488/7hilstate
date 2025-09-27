@@ -131,6 +131,31 @@
             border-left: 2px solid var(--color-neutral-200);
             margin-top: 0.5rem;
         }
+        .cost-input {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--color-neutral-100);
+            border-color: var(--color-neutral-200);
+            box-shadow: inset 0 1px 2px 0 rgba(0,0,0,0.05);
+        }
+        .cost-input:focus {
+            outline: 2px solid var(--color-primary-weak);
+            border-color: var(--color-primary);
+        }
+        .detail-link {
+            display: inline-block;
+            margin-left: 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-primary);
+            background-color: var(--color-primary-weak);
+            padding: 0.125rem 0.5rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .detail-link:hover {
+            background-color: #bfdbfe; /* blue-200 */
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -157,7 +182,28 @@
             </div>
         </div>
         
-        <main class="mt-4 space-y-4">
+        <div class="mt-6 p-4 bg-white rounded-lg shadow-sm">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">공사 예산 관리</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                <div>
+                    <p class="text-sm text-slate-500">총 예산</p>
+                    <div class="flex justify-center items-baseline">
+                        <input id="total-budget-input" type="text" class="text-2xl font-bold text-slate-900 w-auto text-center border-0 bg-transparent p-0 focus:ring-2 focus:ring-blue-200 rounded" value="60,000,000">
+                        <span class="text-2xl font-bold text-slate-900"> 원</span>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-sm text-slate-500">총 지출</p>
+                    <p id="total-spent" class="text-2xl font-bold text-blue-600">0 원</p>
+                </div>
+                <div>
+                    <p class="text-sm text-slate-500">잔여 예산</p>
+                    <p id="remaining-budget" class="text-2xl font-bold text-green-600">0 원</p>
+                </div>
+            </div>
+        </div>
+        
+        <main class="mt-8 space-y-4">
             <h2 class="text-2xl font-bold text-slate-800 mb-3">일자별 공정 관리 체크리스트</h2>
 
             <details class="bg-white rounded-lg shadow-sm" open>
@@ -200,167 +246,366 @@
                             <div class="checklist-item"><input type="checkbox" id="p0-21"><label for="p0-21">수압 체크 및 가압펌프 필요 여부 결정</label></div>
                         </div>
                     </div>
-                </div>
-            </details>
+                </details>
 
-            <div class="pl-4 border-l-2 border-blue-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">D-1 │ 현장 보양</p>
-                <div class="mt-3 pl-4">
-                    <div class="checklist-item"><input type="checkbox" id="ph1-0-1"><label for="ph1-0-1">공용 엘리베이터, 복도 등 손상 방지를 위한 보양 상태 확인</label></div>
+                <div class="pl-4 border-l-2 border-blue-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">D-1 │ 현장 보양</p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="pre-work" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="pre-work" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원">
+                        </div>
+                    </div>
+                    <div class="mt-3 pl-4">
+                        <div class="checklist-item"><input type="checkbox" id="ph1-0-1"><label for="ph1-0-1">공용 엘리베이터, 복도 등 손상 방지를 위한 보양 상태 확인</label></div>
+                    </div>
                 </div>
-            </div>
-            <div class="pl-4 border-l-2 border-blue-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">9/15 (월) ~ 9/18 (목): 전체 철거</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1">
-                    <li>9/15 (월): 일반 철거</li>
-                    <li>9/17 (수): 마루 철거</li>
-                    <li>9/18 (목): 욕실/타일 철거</li>
-                </ul>
-                <div class="mt-3 pl-4">
-                    <div class="checklist-item"><input type="checkbox" id="ph1-1-1"><label for="ph1-1-1">철거 범위 최종 확인(벽, 바닥, 창호, 가구 등)</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="ph1-1-2"><label for="ph1-1-2">보존 대상(샷시 등) 손상 방지 요청</label></div>
-                     <div class="checklist-item"><input type="checkbox" id="ph1-2-1"><label for="ph1-2-1">욕실 올철거(방수층까지)</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="c5-8"><label for="c5-8">폐기물 처리 계획 계약서 명시 확인 및 전량 반출</label></div>
+                <div class="pl-4 border-l-2 border-blue-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">9/15 (월) ~ 9/18 (목): 전체 철거<a href="demolition.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="demolition" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="2117000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="demolition" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="2117000">
+                        </div>
+                    </div>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1">
+                        <li>9/15 (월): 일반 철거 <span class="font-bold text-blue-600">(완료)</span></li>
+                        <li>9/17 (수): 마루 철거 <span class="font-bold text-blue-600">(완료, 667,000원)</span></li>
+                        <li>9/18 (목): 욕실/타일 철거 <span class="font-bold text-blue-600">(완료)</span></li>
+                    </ul>
+                    <div class="mt-3 pl-4">
+                        <div class="checklist-item"><input type="checkbox" id="ph1-1-1" checked><label for="ph1-1-1">철거 범위 최종 확인(벽, 바닥, 창호, 가구 등)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="ph1-1-2" checked><label for="ph1-1-2">보존 대상(샷시 등) 손상 방지 요청</label></div>
+                         <div class="checklist-item"><input type="checkbox" id="ph1-2-1"><label for="ph1-2-1">욕실 올철거(방수층까지)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="c5-8" checked><label for="c5-8">폐기물 처리 계획 계약서 명시 확인 및 전량 반출</label></div>
+                    </div>
                 </div>
-            </div>
-            <div class="pl-4 border-l-2 border-blue-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">9/22 (월) ~ 10/12 (일): 욕실 설비 및 방수</p>
-                <p class="text-sm text-slate-600 ml-4">↳ "전기/에어컨 공정과 병행. 방수 및 양생 시간(최소 3일 이상) 확보 필수."</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1">
-                    <li>설비/미장: <span class="font-bold text-blue-600">(디타일러)</span></li>
-                </ul>
-                <div class="mt-3 pl-4">
-                    <div class="checklist-item"><input type="checkbox" id="ph1-3-1"><label for="ph1-3-1">욕실/주방/세탁실 배관·배수구 위치 도면 일치 확인</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="ph1-3-2"><label for="ph1-3-2">매립수전 배관 수평/위치 정확도 확인</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="ph1-4-1"><label for="ph1-4-1">조적(젠다이, 매립선반 등) 도면대로 시공, 수직/수평 확인</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="ph1-5-1"><label for="ph1-5-1">1, 2차 방수 도포 범위/두께 꼼꼼히 확인 (취약부 중점)</label></div>
-                     <div class="checklist-item"><input type="checkbox" id="ph1-6-1"><label for="ph1-6-1">방수/미장 후 충분한 양생 시간 확보(출입 자제)</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="c7-7"><label for="c7-7"><span class="highlight-star">★</span> 욕실 방수 후 <strong class="text-slate-800">'담수 테스트' (24시간 이상)</strong> 요청 <span class="highlight-red">필수!</span></label></div>
-                    <div class="checklist-item"><input type="checkbox" id="c3-3"><label for="c3-3">화장실 천장 배수관 방음재 시공 확인</label></div>
+                <div class="pl-4 border-l-2 border-blue-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">9/22 (월) ~ 10/12 (일): 욕실 설비 및 방수<a href="bath.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="bathroom-plumbing" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="1600000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="bathroom-plumbing" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="1600000">
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 ml-4">↳ "전기/에어컨 공정과 병행. 방수 및 양생 시간(최소 3일 이상) 확보 필수."</p>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1">
+                        <li>설비/미장: <span class="font-bold text-blue-600">(엄지철거)</span></li>
+                    </ul>
+                    <div class="mt-3 pl-4">
+                        <div class="checklist-item"><input type="checkbox" id="c-waterproof-spec"><label for="c-waterproof-spec"><strong class="text-red-500">[필수]</strong> 1차 액체방수 → 단열재 → 난방배관 → 방통미장 → 2차 도막방수 순서 엄수</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="ph1-3-1" checked><label for="ph1-3-1">욕실/주방/세탁실 배관·배수구 위치 도면 일치 확인</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="ph1-3-2" checked><label for="ph1-3-2">매립수전 배관 수평/위치 정확도 확인</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="ph1-4-1" checked><label for="ph1-4-1">조적(젠다이, 매립선반 등) 도면대로 시공, 수직/수평 확인</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="ph1-5-1" checked><label for="ph1-5-1">1, 2차 방수 도포 범위/두께 꼼꼼히 확인 (취약부 중점)</label></div>
+                         <div class="checklist-item"><input type="checkbox" id="ph1-6-1" checked><label for="ph1-6-1">방수/미장 후 충분한 양생 시간 확보(출입 자제)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="c7-7"><label for="c7-7"><span class="highlight-star">★</span> 욕실 방수 후 <strong class="text-slate-800">'담수 테스트' (24시간 이상)</strong> 요청 <span class="highlight-red">필수!</span></label></div>
+                        <div class="checklist-item"><input type="checkbox" id="c3-3" checked><label for="c3-3">화장실 천장 배수관 방음재 시공 확인</label></div>
+                    </div>
                 </div>
-            </div>
-            <div class="pl-4 border-l-2 border-yellow-300 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">9/23 (화), 9/25 (목): 전기 1차 (배선)</p>
-                <p class="text-sm text-slate-600 ml-4">↳ "설비/공조팀과 협의 완료. 선행 작업 후 후속 공정에서 간섭 없도록 상호 확인."</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>전기: <span class="font-bold text-blue-600">(권성의 전기팀)</span></li></ul>
-                <div class="mt-3 pl-4">
-                    <div class="checklist-item"><input type="checkbox" id="c1-16"><label for="c1-16"><span class="highlight-star">★</span> 인덕션 <strong class="text-slate-800">단독 배선</strong> 및 광파오븐 <strong class="text-slate-800">별도 회로 분리</strong></label></div>
-                    <div class="checklist-item"><input type="checkbox" id="c1-19"><label for="c1-19">숨겨진 콘센트(커튼박스, TV뒤, 서랍 등) 전선 인출 확인</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="c7-10"><label for="c7-10">벽 덮기 전, 최종 '전기 배선 도면' 및 사진 확보</label></div>
+                <div class="pl-4 border-l-2 border-yellow-300 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">9/25 (목), 10/1 (수): 전기 1차 (배선)<a href="electric.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="electric-1" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="1700000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="electric-1" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="1250000">
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 ml-4">↳ "설비/공조팀과 협의 완료. 선행 작업 후 후속 공정에서 간섭 없도록 상호 확인."</p>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>전기: <span class="font-bold text-blue-600">(권성의 전기팀)</span></li></ul>
+                    <div class="mt-3 pl-4">
+                        <div class="checklist-item"><input type="checkbox" id="c1-16"><label for="c1-16"><span class="highlight-star">★</span> 인덕션 <strong class="text-slate-800">단독 배선</strong> 및 광파오븐 <strong class="text-slate-800">별도 회로 분리</strong></label></div>
+                        <div class="checklist-item"><input type="checkbox" id="c1-19"><label for="c1-19">숨겨진 콘센트(커튼박스, TV뒤, 서랍 등) 전선 인출 확인</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="c7-10"><label for="c7-10">벽 덮기 전, 최종 '전기 배선 도면' 및 사진 확보</label></div>
+                    </div>
                 </div>
-            </div>
-            <div class="pl-4 border-l-2 border-blue-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">9/25 (목): 현관문(방화문) 이전 설치</p>
-                <p class="text-sm text-slate-600 ml-4">↳ "철거 후 첫 작업. 다른 공정 방해 없이 단독으로 안전하게 진행."</p>
-            </div>
-            <div class="pl-4 border-l-2 border-blue-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">9/29 (월): 시스템 에어컨 1차 (배관)</p>
-                <p class="text-sm text-slate-600 ml-4">↳ "천장 배관 경로 확정. 선행된 전기 배선과 간섭 없는지 최종 확인."</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1">
-                    <li>공조: <span class="font-bold text-slate-500">(업체 미정)</span></li>
-                </ul>
-                 <div class="mt-3 pl-4">
-                    <div class="checklist-item"><input type="checkbox" id="c7-8"><label for="c7-8">시스템 에어컨 냉매/드레인 배관 구배(기울기) 확인</label></div>
+                <div class="pl-4 border-l-2 border-blue-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">9/25 (목): 현관문(방화문) 이전 설치</p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="front-door" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="1600000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="front-door" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="1600000">
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 ml-4">↳ "철거 후 첫 작업. 다른 공정 방해 없이 단독으로 안전하게 진행."</p>
                 </div>
-            </div>
-            <div class="pl-4 border-l-2 border-green-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">10/14 (화) ~ 10/15 (수): 목공사</p>
-                 <p class="text-sm text-slate-600 ml-4">↳ "천장, 벽체, 문/문틀 등. 모든 선행 공정 완료 후 최종 시공."</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>목공: <span class="font-bold text-blue-600">(수원유목수)</span></li></ul>
-                <div class="mt-3 pl-4">
-                    <div class="checklist-item"><input type="checkbox" id="c2-2"><label for="c2-2"><span class="highlight-star">★</span> 벽 보강: 벽걸이 TV, 선반, 욕실장 위치 합판 보강 <span class="highlight-red">필수!</span></label></div>
-                    <div class="checklist-item"><input type="checkbox" id="c2-4"><label for="c2-4">문 개폐 방향 및 가구 간섭 여부 재확인</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="c4-11"><label for="c4-11">이중 커튼 박스(속커튼+암막) 폭/깊이 확보 확인</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="ph2-10-1"><label for="ph2-10-1">★현장 최종 마킹★: 전기팀과 조명/스위치 위치 실선 표시로 최종 확정</label></div>
-                     <div class="checklist-item"><input type="checkbox" id="ph2-11-1"><label for="ph2-11-1">석고보드 평탄도/이음매 단차 확인</label></div>
+                <div class="pl-4 border-l-2 border-blue-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">9/26 (금): 미장 및 2차 확장</p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="plastering-expansion" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="1800000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="plastering-expansion" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="1800000">
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 ml-4">↳ "바닥과 벽면의 수평을 맞추고, 확장부 마감 작업을 진행합니다."</p>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>미장: <span class="font-bold text-blue-600">(엄지철거)</span></li></ul>
+                    <div class="mt-3 pl-4">
+                       <div class="checklist-item"><input type="checkbox" id="c-plastering-1"><label for="c-plastering-1">미장면 평활도 및 수직/수평 확인</label></div>
+                       <div class="checklist-item"><input type="checkbox" id="c-plastering-2"><label for="c-plastering-2">확장부 단열재 시공 및 마감 상태 점검</label></div>
+                    </div>
                 </div>
-            </div>
-            <div class="pl-4 border-l-2 border-green-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">10/16 (목) ~ 10/17 (금): 페인트 (셀프 권장 일정)</p>
-                <p class="text-sm text-slate-600 ml-4">↳ "발코니 등 도장 구간 셀프 진행 권장. 마루/벽지 시공 전, 충분한 마스킹 및 환기 조건에서 작업."</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1">
-                    <li>페인트: <span class="font-bold text-slate-500">(셀프)</span></li>
-                </ul>
-                <div class="mt-3 pl-4">
-                    <div class="checklist-item"><input type="checkbox" id="ph3-15-1"><label for="ph3-15-1">퍼티/샌딩 평활도 확인 (도장 전)</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="ph3-15-2"><label for="ph3-15-2">페인트 조색 결과 샘플 일치 확인</label></div>
+                <div class="pl-4 border-l-2 border-blue-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">9/25 (목): 시스템 에어컨 1차 (배관)<a href="hvac.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="hvac-1" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="5800000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="hvac-1" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="5800000">
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 ml-4">↳ "천장 배관 경로 확정. 선행된 전기 배선과 간섭 없는지 최종 확인."</p>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1">
+                        <li>공조: <span class="font-bold text-blue-600">(에어컨설팅)</span></li>
+                    </ul>
+                     <div class="mt-3 pl-4">
+                        <div class="checklist-item"><input type="checkbox" id="c7-8"><label for="c7-8">시스템 에어컨 냉매/드레인 배관 구배(기울기) 확인</label></div>
+                    </div>
                 </div>
-            </div>
-            <div class="pl-4 border-l-2 border-green-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">10/18 (토) ~ 10/19 (일): 필름 작업</p>
-                 <p class="text-sm text-slate-600 ml-4">↳ "샷시, 문틀 등 지정 부위 필름 래핑. 목공 후 건조 상태에서 진행."</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1">
-                    <li>필름: <span class="font-bold text-slate-500">(업체 미정)</span></li>
-                </ul>
-                 <div class="mt-3 pl-4">
-                     <div class="checklist-item"><input type="checkbox" id="ph3-16-1"><label for="ph3-16-1">필름 마감 품질(기포, 찢김) 확인</label></div>
+                <div class="pl-4 border-l-2 border-green-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">10/14 (화) ~ 10/16 (목): 목공사<a href="carpentry.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                     <p class="text-sm text-slate-600 ml-4">↳ "천장, 벽체, 문/문틀 등. 모든 선행 공정 완료 후 최종 시공."</p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="carpentry" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="6200000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="carpentry" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="6200000">
+                        </div>
+                    </div>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>목공: <span class="font-bold text-blue-600">(수원 유찬우 목수님)</span></li></ul>
+                    <div class="mt-3 pl-4">
+                        <div class="checklist-item"><input type="checkbox" id="c2-2"><label for="c2-2"><span class="highlight-star">★</span> 벽 보강: 벽걸이 TV, 선반, 욕실장 위치 합판 보강 <span class="highlight-red">필수!</span></label></div>
+                        <div class="checklist-item"><input type="checkbox" id="c2-4"><label for="c2-4">문 개폐 방향 및 가구 간섭 여부 재확인</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="c4-11"><label for="c4-11">이중 커튼 박스(속커튼+암막) 폭/깊이 확보 확인</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="ph2-10-1"><label for="ph2-10-1">★현장 최종 마킹★: 전기팀과 조명/스위치 위치 실선 표시로 최종 확정</label></div>
+                         <div class="checklist-item"><input type="checkbox" id="ph2-11-1"><label for="ph2-11-1">석고보드 평탄도/이음매 단차 확인</label></div>
+                    </div>
                 </div>
-            </div>
-            <div class="pl-4 border-l-2 border-green-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">10/20 (월) ~ 10/24 (금): 타일 & 도기 세팅</p>
-                <p class="text-sm text-slate-600 ml-4">↳ "욕실, 현관, 발코니 타일 시공 및 변기, 세면대 등 도기 설치 완료.<br>→ 완료 후, 욕실 출입구 완전 차단 보양 필수."</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>타일/도기: <span class="font-bold text-blue-600">(디타일러)</span></li></ul>
-                <div class="mt-3 pl-4">
-                     <div class="checklist-item"><input type="checkbox" id="ph2-12-1"><label for="ph2-12-1">★담수 테스트★: 타일 시공 전 누수 여부 최종 확인</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="c7-1"><label for="c7-1"><span class="highlight-star">★</span> 타일 시작점 지정: 잘린 타일이 안 보이는 곳으로 가도록 레이아웃 확정</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="ph2-13-1"><label for="ph2-13-1">코너 마감(졸리컷/코너비드) 방식 재확인</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="c4-7"><label for="c4-7">타일 평탄도 및 줄눈 간격 일정성 확인</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="ph4-23-1"><label for="ph4-23-1">도기 설치 후 누수/수압 최종 체크</label></div>
+                <div class="pl-4 border-l-2 border-green-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">10/16 (목) ~ 10/17 (금): 페인트 (셀프 권장 일정)<a href="paint.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="paint" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="paint" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원">
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 ml-4">↳ "발코니 등 도장 구간 셀프 진행 권장. 마루/벽지 시공 전, 충분한 마스킹 및 환기 조건에서 작업."</p>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1">
+                        <li>페인트: <span class="font-bold text-slate-500">(셀프)</span></li>
+                    </ul>
+                    <div class="mt-3 pl-4">
+                        <div class="checklist-item"><input type="checkbox" id="ph3-15-1"><label for="ph3-15-1">퍼티/샌딩 평활도 확인 (도장 전)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="ph3-15-2"><label for="ph3-15-2">페인트 조색 결과 샘플 일치 확인</label></div>
+                    </div>
                 </div>
-            </div>
-            <div class="pl-4 border-l-2 border-green-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">10/22 (수) ~ 10/23 (목): 가구 속장 선설치</p>
-                <p class="text-sm text-slate-600 ml-4">↳ "주방 가구, 붙박이장 등 내부 속장(카카스) 선설치. 타일팀과 동선 협의하여 진행."</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>가구: <span class="font-bold text-slate-500">(업체 미정)</span></li></ul>
-                <div class="mt-3 pl-4">
-                     <div class="checklist-item"><input type="checkbox" id="ph3-19-1"><label for="ph3-19-1">빌트인 가전 공간 실측 일치 확인</label></div>
-                     <div class="checklist-item"><input type="checkbox" id="c7-5"><label for="c7-5">가구 하드웨어(블룸/헤티히 등) 및 소프트 클로징 기능 확인</label></div>
+                <div class="pl-4 border-l-2 border-green-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">10/18 (토) ~ 10/19 (일): 필름 작업<a href="film.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="film" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="700000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="film" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="700000">
+                        </div>
+                    </div>
+                     <p class="text-sm text-slate-600 ml-4">↳ "샷시, 문틀 등 지정 부위 필름 래핑. 목공 후 건조 상태에서 진행."</p>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1">
+                        <li>필름: <span class="font-bold text-blue-600">(우브인테리어 필름)</span></li>
+                    </ul>
+                     <div class="mt-3 pl-4">
+                         <div class="checklist-item"><input type="checkbox" id="ph3-16-1"><label for="ph3-16-1">필름 마감 품질(기포, 찢김) 확인</label></div>
+                    </div>
                 </div>
-            </div>
-            <div class="pl-4 border-l-2 border-green-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">10/24 (금): 바닥 공사 (마루)</p>
-                <p class="text-sm text-slate-600 ml-4">↳ "전체 공간 마루 시공. 속장 하부 보양 유지."</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>마루: <span class="font-bold text-blue-600">(마루왕)</span></li></ul>
-                <div class="mt-3 pl-4">
-                    <div class="checklist-item"><input type="checkbox" id="c7-6"><label for="c7-6">바닥 수평 몰탈 전 '프라이머' 도포 확인 (소음 예방)</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="ph3-18-2"><label for="ph3-18-2">시공 중 손상 방지 및 완료 후 즉시 보양 요청</label></div>
+                <div class="pl-4 border-l-2 border-green-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">10/20 (월) ~ 10/24 (금): 타일 & 도기 세팅<a href="tile.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="tile-pottery" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="12000000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="tile-pottery" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="12000000">
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 ml-4">↳ "욕실, 현관, 발코니 타일 시공 및 변기, 세면대 등 도기 설치 완료.<br>→ 완료 후, 욕실 출입구 완전 차단 보양 필수."</p>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>타일/도기: <span class="font-bold text-slate-500">(업체 미정)</span></li></ul>
+                    <div class="mt-3 pl-4">
+                         <div class="checklist-item"><input type="checkbox" id="ph2-12-1"><label for="ph2-12-1">★담수 테스트★: 타일 시공 전 누수 여부 최종 확인</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="c7-1"><label for="c7-1"><span class="highlight-star">★</span> 타일 시작점 지정: 잘린 타일이 안 보이는 곳으로 가도록 레이아웃 확정</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="ph2-13-1"><label for="ph2-13-1">코너 마감(졸리컷/코너비드) 방식 재확인</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="c4-7"><label for="c4-7">타일 평탄도 및 줄눈 간격 일정성 확인</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="ph4-23-1"><label for="ph4-23-1">도기 설치 후 누수/수압 최종 체크</label></div>
+                    </div>
                 </div>
-            </div>
-            <div class="pl-4 border-l-2 border-purple-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">10/27 (월) ~ 10/28 (화): 도배 공사</p>
-                 <p class="text-sm text-slate-600 ml-4">↳ "전체 벽면 도배 마감. → 마루 손상 방지를 위한 바닥 보양 철저."</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>도배: <span class="font-bold text-slate-500">(업체 미정)</span></li></ul>
-                <div class="mt-3 pl-4">
-                     <div class="checklist-item"><input type="checkbox" id="ph4-22-1"><label for="ph4-22-1">도배 이음새, 기포, 오염, 찢김 여부 확인</label></div>
+                <div class="pl-4 border-l-2 border-green-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">10/22 (수) ~ 10/23 (목): 가구 속장 선설치<a href="furniture.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="furniture-1" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="10000000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="furniture-1" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="10000000">
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 ml-4">↳ "주방 가구, 붙박이장 등 내부 속장(카카스) 선설치. 타일팀과 동선 협의하여 진행."</p>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>가구: <span class="font-bold text-slate-500">(업체 미정)</span></li></ul>
+                    <div class="mt-3 pl-4">
+                         <div class="checklist-item"><input type="checkbox" id="ph3-19-1"><label for="ph3-19-1">빌트인 가전 공간 실측 일치 확인</label></div>
+                         <div class="checklist-item"><input type="checkbox" id="c7-5"><label for="c7-5">가구 하드웨어(블룸/헤티히 등) 및 소프트 클로징 기능 확인</label></div>
+                    </div>
                 </div>
-            </div>
-            <div class="pl-4 border-l-2 border-purple-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">10/29 (수): 가구 도어(문짝) 설치</p>
-                <p class="text-sm text-slate-600 ml-4">↳ "속장/마루/벽지 완료 후, 가구 도어 최종 설치 및 조정."</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>가구: <span class="font-bold text-slate-500">(업체 미정)</span></li></ul>
-            </div>
-            <div class="pl-4 border-l-2 border-red-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">10/30 (목): 전기 2차 (조명/기구 설치)</p>
-                <p class="text-sm text-slate-600 ml-4">↳ "도배/가구 완료 후 최종 조명, 스위치, 콘센트 등 기구 부착."</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>전기: <span class="font-bold text-blue-600">(권성의 전기팀)</span></li></ul>
-                <div class="mt-3 pl-4">
-                    <div class="checklist-item"><input type="checkbox" id="ph4-24-1"><label for="ph4-24-1">전체 점등/작동 확인 (스위치별 회로, 디밍 기능 등)</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="c1-1"><label for="c1-1">전체 조명 색온도(3000K/4000K) 및 연색성(CRI 90+) 확인</label></div>
-                    <div class="checklist-item"><input type="checkbox" id="c6-11"><label for="c6-11">스위치/콘센트 라인 수평/수직 정렬 확인</label></div>
+                <div class="pl-4 border-l-2 border-green-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">10/24 (금): 바닥 공사 (마루)<a href="flooring.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="flooring" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="3683000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="flooring" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="3683000">
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 ml-4">↳ "전체 공간 마루 시공. 속장 하부 보양 유지."</p>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>마루: <span class="font-bold text-blue-600">(마루왕)</span></li></ul>
+                    <div class="mt-3 pl-4">
+                        <div class="checklist-item"><input type="checkbox" id="c7-6"><label for="c7-6">바닥 수평 몰탈 전 '프라이머' 도포 확인 (소음 예방)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="ph3-18-2"><label for="ph3-18-2">시공 중 손상 방지 및 완료 후 즉시 보양 요청</label></div>
+                    </div>
                 </div>
-            </div>
-            <div class="pl-4 border-l-2 border-red-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">10/31 (금): 시스템에어컨 2차</p>
-                 <p class="text-sm text-slate-600 ml-4">↳ "천장에 실내기 최종 설치 및 마감."</p>
-                <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>공조: <span class="font-bold text-slate-500">(업체 미정)</span></li></ul>
-            </div>
-            <div class="pl-4 border-l-2 border-red-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">11/3 (월): 슬라이딩 간살도어 중문 설치</p>
-                <p class="text-sm text-slate-600 ml-4">↳ "슬라이딩 간살도어 중문 신규 설치 및 마감 작업."</p>
+                <div class="pl-4 border-l-2 border-purple-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">10/27 (월) ~ 10/28 (화): 도배 공사<a href="wallpaper.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="wallpaper" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="3800000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="wallpaper" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="3800000">
+                        </div>
+                    </div>
+                     <p class="text-sm text-slate-600 ml-4">↳ "전체 벽면 도배 마감. → 마루 손상 방지를 위한 바닥 보양 철저."</p>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>도배: <span class="font-bold text-slate-500">(업체 미정)</span></li></ul>
+                    <div class="mt-3 pl-4">
+                         <div class="checklist-item"><input type="checkbox" id="ph4-22-1"><label for="ph4-22-1">도배 이음새, 기포, 오염, 찢김 여부 확인</label></div>
+                    </div>
+                </div>
+                <div class="pl-4 border-l-2 border-purple-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">10/29 (수): 가구 도어(문짝) 설치<a href="furniture.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="furniture-2" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="10000000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="furniture-2" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="10000000">
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 ml-4">↳ "속장/마루/벽지 완료 후, 가구 도어 최종 설치 및 조정."</p>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>가구: <span class="font-bold text-slate-500">(업체 미정)</span></li></ul>
+                </div>
+                <div class="pl-4 border-l-2 border-red-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">10/30 (목): 전기 2차 (조명/기구 설치)<a href="electric.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="electric-2" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="800000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="electric-2" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="1250000">
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 ml-4">↳ "도배/가구 완료 후 최종 조명, 스위치, 콘센트 등 기구 부착."</p>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>전기: <span class="font-bold text-blue-600">(권성의 전기팀)</span></li></ul>
+                    <div class="mt-3 pl-4">
+                        <div class="checklist-item"><input type="checkbox" id="ph4-24-1"><label for="ph4-24-1">전체 점등/작동 확인 (스위치별 회로, 디밍 기능 등)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="c1-1"><label for="c1-1">전체 조명 색온도(3000K/4000K) 및 연색성(CRI 90+) 확인</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="c6-11"><label for="c6-11">스위치/콘센트 라인 수평/수직 정렬 확인</label></div>
+                    </div>
+                </div>
+                <div class="pl-4 border-l-2 border-red-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">10/31 (금): 시스템에어컨 2차<a href="hvac.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">예산</label>
+                            <input type="text" data-process="hvac-2" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500">지출</label>
+                            <input type="text" data-process="hvac-2" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원">
+                        </div>
+                    </div>
+                     <p class="text-sm text-slate-600 ml-4">↳ "천장에 실내기 최종 설치 및 마감."</p>
+                    <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>공조: <span class="font-bold text-blue-600">(에어컨설팅)</span></li></ul>
+                </div>
+                <div class="pl-4 border-l-2 border-red-200 bg-white rounded-lg shadow-sm p-4">
+                    <p class="font-semibold text-slate-700">11/3 (월): 여닫이 간살도어 중문 설치</p>
+                <div class="flex items-center gap-4 mt-2">
+                    <div>
+                        <label class="text-xs font-medium text-slate-500">예산</label>
+                        <input type="text" data-process="sliding-door" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="1600000">
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-slate-500">지출</label>
+                        <input type="text" data-process="sliding-door" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="1600000">
+                    </div>
+                </div>
+                <p class="text-sm text-slate-600 ml-4">↳ "여닫이 간살도어 중문 신규 설치 및 마감 작업."</p>
                 <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>중문: <span class="font-bold text-slate-500">(업체 미정)</span></li></ul>
             </div>
             <div class="pl-4 border-l-2 border-red-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">11/4 (화): 줄눈 & 실리콘 마감</p>
+                <p class="font-semibold text-slate-700">11/4 (화): 줄눈 & 실리콘 마감<a href="grout_silicone.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                <div class="flex items-center gap-4 mt-2">
+                    <div>
+                        <label class="text-xs font-medium text-slate-500">예산</label>
+                        <input type="text" data-process="grout-silicone" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원">
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-slate-500">지출</label>
+                        <input type="text" data-process="grout-silicone" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원">
+                    </div>
+                </div>
                  <p class="text-sm text-slate-600 ml-4">↳ "타일 줄눈 시공 및 창호, 가구 주변 등 실리콘 최종 마감."</p>
                 <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>줄눈/실리콘: <span class="font-bold text-slate-500">(업체 미정)</span></li></ul>
                  <div class="mt-3 pl-4">
@@ -369,7 +614,17 @@
                 </div>
             </div>
             <div class="pl-4 border-l-2 border-red-200 bg-white rounded-lg shadow-sm p-4">
-                <p class="font-semibold text-slate-700">11/5 (수): 입주 청소 및 최종 점검</p>
+                <p class="font-semibold text-slate-700">11/5 (수): 입주 청소 및 최종 점검<a href="cleaning.html" target="_blank" class="detail-link">상세보기 ↗</a></p>
+                <div class="flex items-center gap-4 mt-2">
+                    <div>
+                        <label class="text-xs font-medium text-slate-500">예산</label>
+                        <input type="text" data-process="cleaning" data-cost-type="budget" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="500000">
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-slate-500">지출</label>
+                        <input type="text" data-process="cleaning" data-cost-type="spent" class="cost-input text-sm p-1 border rounded w-28 text-right" placeholder="0원" value="500000">
+                    </div>
+                </div>
                 <p class="text-sm text-slate-600 ml-4">↳ "전체 공사 폐기물 처리 및 입주 청소, 최종 하자 체크 후 공사 완료."</p>
                 <ul class="list-disc ml-8 text-sm text-slate-600 mt-1"><li>청소: <span class="font-bold text-slate-500">(업체 미정)</span></li></ul>
                  <div class="mt-3 pl-4">
@@ -390,12 +645,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 모든 체크박스에 대한 참조를 가져옵니다.
+            // --- Checklist Progress ---
             const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
             const progressBar = document.getElementById('progress-bar');
             const progressText = document.getElementById('progress-text');
             
-            // 체크 상태에 따라 레이블 스타일을 업데이트하는 함수
             function styleLabel(checkbox) {
                 const label = checkbox.nextElementSibling;
                 if (label) {
@@ -407,7 +661,6 @@
                 }
             }
 
-            // 진행률 표시줄과 텍스트를 업데이트하는 함수
             function updateProgress() {
                 const totalCheckboxes = document.querySelectorAll('main .checklist-item input[type="checkbox"]').length;
                 const checkedItems = document.querySelectorAll('main .checklist-item input[type="checkbox"]:checked').length;
@@ -420,11 +673,10 @@
                     progressBar.style.width = '0%';
                     progressText.textContent = `0 / 0`;
                 }
-                saveState();
+                saveChecklistState();
             }
 
-            // 모든 체크박스의 현재 상태를 로컬 저장소에 저장하는 함수
-            function saveState() {
+            function saveChecklistState() {
                 const state = {};
                 document.querySelectorAll('main .checklist-item input[type="checkbox"]').forEach(checkbox => {
                     state[checkbox.id] = checkbox.checked;
@@ -432,8 +684,7 @@
                 localStorage.setItem('interiorChecklistProgress', JSON.stringify(state));
             }
 
-            // 로컬 저장소에서 체크박스 상태를 로드하는 함수
-            function loadState() {
+            function loadChecklistState() {
                 const savedState = JSON.parse(localStorage.getItem('interiorChecklistProgress'));
                 if (savedState) {
                     document.querySelectorAll('main .checklist-item input[type="checkbox"]').forEach(checkbox => {
@@ -446,7 +697,6 @@
                 updateProgress();
             }
 
-            // 각 체크박스에 변경 이벤트 리스너를 추가합니다.
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', () => {
                     styleLabel(checkbox);
@@ -454,8 +704,117 @@
                 });
             });
 
-            // 페이지 로드 시 상태를 로드합니다.
-            loadState();
+            // --- Budget Management ---
+            const costInputs = document.querySelectorAll('.cost-input');
+            const totalBudgetInput = document.getElementById('total-budget-input');
+            const totalSpentEl = document.getElementById('total-spent');
+            const remainingBudgetEl = document.getElementById('remaining-budget');
+
+            function formatCurrency(num) {
+                if (isNaN(num)) return '0 원';
+                return num.toLocaleString('ko-KR') + ' 원';
+            }
+
+            function parseCurrency(str) {
+                if (!str) return 0;
+                const num = parseInt(String(str).replace(/[^0-9]/g, ''), 10);
+                return isNaN(num) ? 0 : num;
+            }
+
+            function updateBudget() {
+                let totalBudget = parseCurrency(totalBudgetInput.value);
+                let totalSpent = 0;
+
+                document.querySelectorAll('.cost-input[data-cost-type="spent"]').forEach(input => {
+                    totalSpent += parseCurrency(input.value);
+                });
+
+                const remainingBudget = totalBudget - totalSpent;
+
+                totalSpentEl.textContent = formatCurrency(totalSpent);
+                remainingBudgetEl.textContent = formatCurrency(remainingBudget);
+
+                if (remainingBudget < 0) {
+                    remainingBudgetEl.classList.remove('text-green-600');
+                    remainingBudgetEl.classList.add('text-red-600');
+                } else {
+                    remainingBudgetEl.classList.add('text-green-600');
+                    remainingBudgetEl.classList.remove('text-red-600');
+                }
+                
+                saveCosts();
+            }
+
+            function formatInputOnBlur(e) {
+                const value = parseCurrency(e.target.value);
+                if (value > 0) {
+                    e.target.value = value.toLocaleString('ko-KR');
+                } else {
+                    e.target.value = '';
+                }
+                updateBudget();
+            }
+
+            function formatInputOnFocus(e) {
+                const value = parseCurrency(e.target.value);
+                e.target.value = value > 0 ? value : '';
+            }
+
+            function saveCosts() {
+                const costs = {
+                    totalBudget: totalBudgetInput.value,
+                    processes: {}
+                };
+                document.querySelectorAll('.cost-input[data-process]').forEach(input => {
+                    const process = input.dataset.process;
+                    const type = input.dataset.costType;
+                    if (!costs.processes[process]) costs.processes[process] = {};
+                    costs.processes[process][type] = input.value;
+                });
+                localStorage.setItem('interiorCosts', JSON.stringify(costs));
+            }
+
+            function loadCosts() {
+                const savedCosts = JSON.parse(localStorage.getItem('interiorCosts'));
+                if (savedCosts) {
+                    // Handle new format
+                    if (savedCosts.totalBudget) {
+                        totalBudgetInput.value = savedCosts.totalBudget;
+                    }
+                    if (savedCosts.processes) {
+                        document.querySelectorAll('.cost-input[data-process]').forEach(input => {
+                            const process = input.dataset.process;
+                            const type = input.dataset.costType;
+                            if (savedCosts.processes[process] && savedCosts.processes[process][type]) {
+                                input.value = savedCosts.processes[process][type];
+                            }
+                        });
+                    }
+                    // Handle old format for backward compatibility
+                    else if (Object.keys(savedCosts).length > 0 && !savedCosts.processes) {
+                         document.querySelectorAll('.cost-input[data-process]').forEach(input => {
+                            const process = input.dataset.process;
+                            const type = input.dataset.costType;
+                            if (savedCosts[process] && savedCosts[process][type]) {
+                                input.value = savedCosts[process][type];
+                            }
+                        });
+                    }
+                }
+                updateBudget();
+            }
+
+            costInputs.forEach(input => {
+                input.addEventListener('focus', formatInputOnFocus);
+                input.addEventListener('blur', formatInputOnBlur);
+            });
+            
+            totalBudgetInput.addEventListener('focus', formatInputOnFocus);
+            totalBudgetInput.addEventListener('blur', formatInputOnBlur);
+
+            // Initial load
+            loadChecklistState();
+            loadCosts();
         });
     </script>
 

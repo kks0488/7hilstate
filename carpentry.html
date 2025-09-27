@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>목공/도어 작업 지시서</title>
+  <title>[흥덕 힐스테이트 7단지 702-504] 프로젝트 협의 노트</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     :root { --color-primary:#222; --color-text:#222; --color-bg:#fff; }
@@ -22,45 +22,220 @@
     .meta-item { display:flex; flex-direction:column; }
     .meta-item .label { font-size:.9em; color:#888; margin-bottom:4px; }
     .meta-item .value { font-weight:700; }
+    .task-container { display:flex; flex-direction:column; gap:24px; margin-top:20px; }
+    .task-item { background:#fdfdfd; border-radius:10px; border:1px solid #eee; padding:24px; display:grid; grid-template-columns:1fr; gap:20px; }
+    @media (min-width: 768px) {
+      .task-item { grid-template-columns:1fr 500px; align-items:flex-start; }
+    }
+    .task-item h3 { margin:0 0 12px; padding-bottom:12px; border-bottom:1px solid #e5e5e5; font-size:1.15em; color:var(--color-primary); }
+    .task-item ul { list-style-type: '– '; list-style-position: inside; padding-left: 0; }
+    .task-item ul li { background:transparent; padding:4px 0; margin:0; border-radius:0; font-size:.95em; }
+    .task-image-placeholder { width:100%; border-radius:8px; border:1px solid #ddd; padding:6px; background:#fff; box-sizing:border-box; }
+    .task-image-placeholder img { width:100%; display:block; border-radius:5px; background-color:#f5f5f5; min-height:150px; }
+    .full-plan-image { padding:20px; background:#fdfdfd; border:1px solid #eee; border-radius:10px; margin-bottom: 24px; }
+    .full-plan-image img { max-width:100%; display:block; margin:0 auto; border-radius: 8px; }
+    .project-overview { padding: 20px; background-color: #f8f9fa; border-radius: 10px; margin-top: 24px; }
+    .project-overview h3 { margin: 0 0 8px; font-size: 1.1em; color: var(--color-primary); }
+    .project-overview p { margin: 0 0 16px; font-size: 0.95em; }
   </style>
 </head>
 <body>
   <header class="header">
-    <div class="brand-logo">(주) 마크트레이드</div>
-    <div>목공/도어 작업 지시서</div>
+    <div class="brand-logo">유한회사 탑어드밴싱</div>
+    <div>프로젝트 협의 노트</div>
   </header>
   <div class="container">
-    <h1>목공/도어 작업 지시서</h1>
+    <h1>[흥덕 힐스테이트 7단지 702-504] 프로젝트 협의 노트</h1>
     <div class="project-meta">
-      <div class="meta-item"><span class="label">Project</span><span class="value">수원 XX아파트</span></div>
-      <div class="meta-item"><span class="label">작성일</span><span class="value">2025-09-14</span></div>
-      <div class="meta-item"><span class="label">현장</span><span class="value">흥덕 힐스테이트 7단지 702-504</span></div>
-      <div class="meta-item"><span class="label">작업일정</span><span class="value">10/14 ~ 10/15</span></div>
-      <div class="meta-item"><span class="label">업체</span><span class="value">수원유목수</span></div>
-      <div class="meta-item"><span class="label">담당자</span><span class="value">OOO</span></div>
+      <div class="meta-item"><span class="label">프로젝트</span><span class="value">흥덕 힐스테이트 7단지</span></div>
+      <div class="meta-item"><span class="label">작성일</span><span class="value">2025-09-27</span></div>
+      <div class="meta-item"><span class="label">현장</span><span class="value">702-504</span></div>
+      <div class="meta-item"><span class="label">작업일정</span><span class="value">10/14, 15, 16</span></div>
+      <div class="meta-item"><span class="label">업체</span><span class="value">수원 유찬우 목수님</span></div>
+      <div class="meta-item"><span class="label">담당자</span><span class="value">김경수</span></div>
     </div>
 
-    <h2>I. 지시사항</h2>
+    <div class="project-overview">
+      <h3>클라이언트</h3>
+      <p>은퇴 후 여생을 보내실 노부부</p>
+      <h3>프로젝트 목표</h3>
+      <p>연세가 있으신 두 분께서 남은 여생을 보내실 아파트를, 무엇보다 따뜻하고 편안한, 고품질의 공간으로 재탄생시키는 것.</p>
+      <h3 style="margin-bottom:8px;">핵심 가치</h3>
+      <p style="margin:0;">튼튼한 기본, 깔끔한 마감, 실용적인 디자인</p>
+    </div>
+
+    <h2>I. 전체 도면</h2>
+    <div class="full-plan-image">
+      <img src="images/유목수작업/00_전체도면.png" alt="목공 전체 도면">
+    </div>
+
+    <h2>II. 상세 작업 내역</h2>
+    <div class="task-container">
+      <div class="task-item">
+        <div class="task-content">
+          <h3>1. 중문</h3>
+          <ul>
+            <li>중문 문틀 시공</li>
+          </ul>
+        </div>
+        <div class="task-image-placeholder">
+          <img src="images/유목수작업/01_중문.png" alt="중문 작업 이미지">
+        </div>
+      </div>
+
+      <div class="task-item">
+        <div class="task-content">
+          <h3>2. 현관우측 발코니룸</h3>
+          <ul>
+            <li>가벽 설치</li>
+            <li>기존 커튼박스에서 연장</li>
+            <li>도어 인방 없음 (무몰딩 마감을 위한 목수님 추천)</li>
+          </ul>
+        </div>
+        <div class="task-image-placeholder">
+          <img src="images/유목수작업/02_현관발코니룸.png" alt="현관우측 발코니룸 작업 이미지">
+        </div>
+      </div>
+
+      <div class="task-item">
+        <div class="task-content">
+          <h3>3. 아드님방</h3>
+          <ul>
+            <li>도어 설치</li>
+            <li>필름 마감: PS170 (벽 '디아망 크림회벽화이트'와 매칭)</li>
+          </ul>
+        </div>
+        <div class="task-image-placeholder">
+          <img src="images/유목수작업/03_아드님방.png" alt="아드님방 작업 이미지">
+        </div>
+      </div>
+
+      <div class="task-item">
+        <div class="task-content">
+          <h3>4. 게스트룸</h3>
+          <ul>
+            <li>도어 설치</li>
+            <li>필름 마감: PS170 (벽 '디아망 크림회벽화이트'와 매칭)</li>
+          </ul>
+        </div>
+        <div class="task-image-placeholder">
+          <img src="images/유목수작업/04_게스트룸.png" alt="게스트룸 작업 이미지">
+        </div>
+      </div>
+
+      <div class="task-item">
+        <div class="task-content">
+          <h3>5. 공용욕실</h3>
+          <ul>
+            <li>도어 설치</li>
+            <li>필름 마감: PS170 (벽 '디아망 크림회벽화이트'와 매칭)</li>
+          </ul>
+        </div>
+        <div class="task-image-placeholder">
+          <img src="images/유목수작업/05_공용욕실.png" alt="공용욕실 작업 이미지">
+        </div>
+      </div>
+
+      <div class="task-item">
+        <div class="task-content">
+          <h3>6. 주방</h3>
+          <ul>
+            <li>냉장고장 710mm 가벽 설치</li>
+            <li>라인조명 목공 작업</li>
+            <li>아이소핑크 50,30 교차시공</li>
+            <li>기존 커튼박스 연장</li>
+          </ul>
+        </div>
+        <div class="task-image-placeholder">
+          <img src="images/유목수작업/06_주방_냉장고장.png" alt="주방 냉장고장 작업 이미지">
+          <img src="images/유목수작업/06_주방_메인.png" alt="주방 작업 이미지" style="margin-top: 10px;">
+        </div>
+      </div>
+
+      <div class="task-item">
+        <div class="task-content">
+          <h3>7. 거실</h3>
+          <ul>
+            <li>우물천장 간접조명 (기존 라인 활용): 60mm(목수님 추천) 두께 마감사각 형태</li>
+            <li>터닝도어 앞 커튼박스 신설</li>
+            <li>TV 반매립 가벽 설치</li>
+            <li>히든도어 시공
+              <ul style="margin-top:5px; padding-left: 20px;">
+                <li>필름 마감: 영림 174 (바닥 '구정마루 로그브라운'과 매칭)</li>
+              </ul>
+            </li>
+            <li>에어컨 배수자리 단열및 마감</li>
+            <li style="margin-top:10px; font-weight: bold; color: #444;">히든도어 마감: 도배 마감 시 가장 깔끔하게 처리하는 방식에 대해 목수님의 노하우를 여쭙니다.</li>
+            <li style="font-weight: bold; color: #444;">매립 TV 가벽: 현재는 75인치 TV이지만, 향후 확장을 고려해 86인치 기준으로 진행 예정입니다. 이에 맞는 최적의 깊이와 여유 공간에 대한 목수님의 전문적인 의견을 여쭙니다.</li>
+            <li style="font-weight: bold; color: #444;">TV 설치 높이: 사모님 신장이 아담하셔서 낮은 소파를 둘 예정입니다. TV가 너무 높으면 불편할 수 있어, 가장 편안한 시청 높이에 대한 목수님의 의견을 듣고 싶습니다.</li>
+          </ul>
+        </div>
+        <div class="task-image-placeholder">
+          <img src="images/유목수작업/07_거실_메인.png" alt="거실 작업 이미지">
+          <img src="images/유목수작업/07_거실_기둥단열.png" alt="거실 기둥 단열 이미지" style="margin-top: 10px;">
+          <img src="images/유목수작업/07_거실_TV반매립사이즈.png" alt="TV 반매립 사이즈" style="margin-top: 10px;">
+        </div>
+      </div>
+
+      <div class="task-item">
+        <div class="task-content">
+          <h3>8. 안방</h3>
+          <ul>
+            <li>600mm 가벽 설치</li>
+            <li>욕실 우측 슬라이딩 도어 시공
+              <ul style="margin-top:5px; padding-left: 20px;">
+                <li>필름 마감: 영림 174 (바닥 '구정마루 로그브라운'과 매칭)</li>
+              </ul>
+            </li>
+            <li>기존 커튼박스 연장 (대략 600mm)</li>
+          </ul>
+        </div>
+        <div class="task-image-placeholder">
+          <img src="images/유목수작업/08_안방.png" alt="안방 작업 이미지">
+        </div>
+      </div>
+
+      <div class="task-item">
+        <div class="task-content">
+          <h3>9. 도배마감부</h3>
+          <ul>
+            <li>마이너스 몰딩(계단몰딩) 3개소 시공 (안방, 작은방 2개)</li>
+            <li>공용부는 무몰딩 마감 예정</li>
+          </ul>
+        </div>
+        <div class="task-image-placeholder">
+          <img src="images/유목수작업/09_도배마감부.png" alt="도배마감부 작업 이미지">
+        </div>
+      </div>
+    </div>
+
+    <h2>III. 유목수님 요청사항</h2>
+    <p style="padding: 10px 15px; background-color: #f8f9fa; border-radius: 5px; margin-bottom: 15px; font-size: 0.95em;">
+      원활한 공사 진행을 위해, 목수님과 논의했던 아래 항목들은 미리 준비/진행해두었습니다.
+    </p>
     <ul>
-      <li>벽 보강: TV, 선반, 욕실장, 커튼박스 위치 합판 보강 필수.</li>
-      <li>문/문틀: 방문/중문 디자인, 9mm 문선, 개폐 방향 최종 확정 및 시공.</li>
-      <li>우물천장/천장 평탄화 및 점검구 위치 협의.</li>
-      <li>현장 최종 마킹: 전기팀과 조명/스위치 위치 실선 표시 후 시공.</li>
-      <li>석고보드 평탄도/이음매 단차 점검, 후속 공정 간섭 제거.</li>
-      <li>도어 설치: 가구 속장 → 마루 → 도배 완료 후 최종 문짝 설치/조정.</li>
+      <li>거실 기둥 철거: <span style="color: #007bff; font-weight: bold;">완료</span></li>
+      <li>터닝도어 실측 및 견적: <span style="color: #007bff; font-weight: bold;">견적 및 실측 일요일 오전(9/28) 완료</span></li>
     </ul>
 
-    <h2>II. 체크리스트</h2>
+    <h2>IV. 협의 및 확인사항</h2>
+    <p style="padding: 10px 15px; background-color: #f8f9fa; border-radius: 5px; margin-bottom: 15px; font-size: 0.95em;">
+      아래 내용은 저희가 중요하게 생각하는 부분들을 정리한 것이며, 현장 상황에 맞춰 목수님의 전문적인 판단에 따라 최적의 방법으로 시공해주시길 부탁드립니다. 세부적인 마감이나 시공 방식은 목수님의 재량에 맡기겠습니다.
+    </p>
     <ul>
-      <li>합판 보강 위치 사진 기록</li>
-      <li>도어 개폐/여유간섭 테스트(걸림/소음)</li>
-      <li>커튼박스 폭/깊이 확보</li>
-      <li>문선 수평/수직 정합성</li>
-      <li>전기 배선 통과부 보강 및 보호</li>
+      <li>신설되는 모든 가벽은 도면 치수를 기준으로 하되, 후속 공정(가구, 도어)과의 정합성을 최우선으로 고려하여 시공 부탁드립니다.</li>
+      <li>전기팀과 라인/간접조명 위치 및 깊이를 최종 협의해주시고, 배선 통과부 보호와 등기구 고정을 위한 보강 작업을 선행해주시면 감사하겠습니다.</li>
+      <li>주방 및 거실 에어컨 배관부 단열은 아이소핑크 교차 시공으로 열교 현상 및 결로가 발생하지 않도록 틈새 없는 꼼꼼한 마감을 부탁드립니다.</li>
+      <li>커튼박스 연장 및 신설 부위는 기존 마감과 단차 없이 자연스럽게 연결하고, 커튼 설치에 충분한 폭과 깊이를 확보해주시길 바랍니다.</li>
+      <li>거실 히든도어와 안방 슬라이딩 도어는 마감 두께를 정확히 계산하여 프레임을 선시공해주시고, 최종적으로 걸림이나 소음 없이 부드럽게 작동하는지 반복 확인 부탁드립니다.</li>
+      <li>마이너스 몰딩 및 무몰딩 공용부는 전체적인 수직/수평을 고려하여 깔끔하게 마감해주시길 요청드립니다.</li>
+      <li>TV/선반/욕실장 위치에는 합판 보강을 필수로 진행해주시고, 그 외에도 필요하다고 판단되는 부분은 보강해주시면 좋겠습니다.</li>
+      <li>주요 보강 부위나 가벽 시공 등 중요한 과정은 사진으로 간단히 기록을 남겨주시면 저희가 참고하는 데 큰 도움이 되겠습니다.</li>
     </ul>
+
   </div>
   <footer class="footer">
-    <div>© 2025 (주) 마크트레이드. All rights reserved.</div>
+    <div>© 2025 유한회사 탑어드밴싱. All rights reserved.</div>
   </footer>
 </body>
 </html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전기 자재 예상 내역서</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+            Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #343a40;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        h2 {
+            font-size: 2em;
+            margin-top: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
+        tbody tr:hover {
+            background-color: #e9ecef;
+        }
+        .summary-table th:nth-child(1) { width: 15%; }
+        .summary-table th:nth-child(2) { width: 20%; }
+        .summary-table th:nth-child(3) { width: 15%; }
+        .details-table th:nth-child(1) { width: 15%; }
+        .details-table th:nth-child(2) { width: 25%; }
+        .details-table th:nth-child(3) { width: 10%; }
+        .details-table th:nth-child(4) { width: 15%; }
+        .group-start-row td {
+            border-top: 2px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>전기 자재 예상 내역서</h1>
+
+        <h2>요약 (예비 수량 포함)</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>품목 (Item)</th>
+                    <th>규격/모델</th>
+                    <th>총 수량 (Total Qty)</th>
+                    <th>비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>프레임</td><td>80x80 (1칸)</td><td>7</td><td>예비 1개 포함</td></tr>
+                <tr><td>프레임</td><td>150x80 (2칸)</td><td>2</td><td>예비 1개 포함</td></tr>
+                <tr><td>프레임</td><td>223x80 (3칸)</td><td>10</td><td>예비 1개 포함</td></tr>
+                <tr><td>스위치 모듈</td><td>1구</td><td>11</td><td>예비 2개 포함 / 1개는 3로 기능</td></tr>
+                <tr><td>스위치 모듈</td><td>2구</td><td>4</td><td>예비 1개 포함</td></tr>
+                <tr><td>스위치 모듈</td><td>3구</td><td>3</td><td>예비 1개 포함</td></tr>
+                <tr><td>콘센트 모듈</td><td>1구</td><td>24</td><td>예비 5개 포함 (기존 2구는 1구 2개로 계산)</td></tr>
+                <tr><td>통신 모듈</td><td>랜선 (CAT6) 2구</td><td>5</td><td>예비 1개 포함 (모든 통신 모듈을 2구로 통합)</td></tr>
+                <tr><td>기타</td><td>하니웰 온도조절기+스위치</td><td>2</td><td>고가 품목, 예비 수량 없음</td></tr>
+                <tr><td>기타</td><td>스틸 매립박스</td><td>25</td><td>공사 편의를 위해 넉넉하게 준비 (프레임 총 19개)</td></tr>
+            </tbody>
+        </table>
+
+        <h2>공간별 상세 내역 (실제 시공 계획 수량)</h2>
+        <table class="details-table">
+            <thead>
+                <tr>
+                    <th>공간</th>
+                    <th>품목</th>
+                    <th>수량</th>
+                    <th>규격/모델</th>
+                    <th>비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="group-start-row"><td>1. 현관</td><td>80x80 프레임</td><td>1</td><td>융스타일</td><td></td></tr>
+                <tr><td>1. 현관</td><td>1구 콘센트</td><td>1</td><td>융스타일</td><td></td></tr>
+                <tr class="group-start-row"><td>2. 발코니룸</td><td>80x80 프레임</td><td>1</td><td>융스타일</td><td>스위치용</td></tr>
+                <tr><td>2. 발코니룸</td><td>3구 스위치</td><td>1</td><td>융스타일</td><td></td></tr>
+                <tr><td>2. 발코니룸</td><td>223x80 프레임</td><td>3</td><td>융스타일</td><td>콘센트/통신용 (요청 모듈 3개라 3칸으로 변경)</td></tr>
+                <tr><td>2. 발코니룸</td><td>1구 콘센트</td><td>4</td><td>융스타일</td><td></td></tr>
+                <tr><td>2. 발코니룸</td><td>랜선 모듈 (CAT6, 2구)</td><td>1</td><td>융스타일</td><td></td></tr>
+                <tr class="group-start-row"><td>3. 복도</td><td>80x80 프레임</td><td>1</td><td>융스타일</td><td></td></tr>
+                <tr><td>3. 복도</td><td>2구 스위치</td><td>1</td><td>융스타일</td><td>1x3로, 1x전체소등</td></tr>
+                <tr class="group-start-row"><td>4. 아드님 방</td><td>하니웰 온도조절기+스위치</td><td>1</td><td>일체형</td><td></td></tr>
+                <tr><td>4. 아드님 방</td><td>223x80 프레임</td><td>1</td><td>융스타일</td><td>기존 콘센트 교체용</td></tr>
+                <tr><td>4. 아드님 방</td><td>1구 콘센트</td><td>4</td><td>융스타일</td><td></td></tr>
+                <tr><td>4. 아드님 방</td><td>랜선 모듈 (CAT6, 2구)</td><td>1</td><td>융스타일</td><td></td></tr>
+                <tr class="group-start-row"><td>5. 게스트룸</td><td>하니웰 온도조절기+스위치</td><td>1</td><td>일체형</td><td></td></tr>
+                <tr><td>5. 게스트룸</td><td>223x80 프레임</td><td>1</td><td>융스타일</td><td></td></tr>
+                <tr><td>5. 게스트룸</td><td>1구 콘센트</td><td>4</td><td>융스타일</td><td></td></tr>
+                <tr><td>5. 게스트룸</td><td>랜선 모듈 (CAT6, 2구)</td><td>1</td><td>융스타일</td><td></td></tr>
+                <tr class="group-start-row"><td>6. 거실</td><td>223x80 프레임</td><td>1</td><td>융스타일</td><td>뒷면</td></tr>
+                <tr><td>6. 거실</td><td>1구 콘센트</td><td>4</td><td>융스타일, 클릭</td><td>뒷면</td></tr>
+                <tr><td>6. 거실</td><td>랜선 모듈 (CAT6, 2구)</td><td>1</td><td>융스타일</td><td>뒷면</td></tr>
+                <tr><td>6. 거실</td><td>80x80 프레임</td><td>2</td><td>융스타일</td><td>앞면-TV월 양옆</td></tr>
+                <tr><td>6. 거실</td><td>1구 콘센트</td><td>2</td><td>융스타일, 클릭</td><td>앞면-TV월 양옆</td></tr>
+                <tr><td>6. 거실</td><td>223x80 프레임</td><td>3</td><td>융스타일</td><td>통합 제어 패널 (스위치 9개 수용 위해 3개로 분할)</td></tr>
+                <tr><td>6. 거실</td><td>1구 스위치</td><td>9</td><td>융스타일</td><td>거실(4)+주방(4)+복도3로(1) 예상</td></tr>
+                <tr class="group-start-row"><td>8. 안방</td><td>150x80 프레임</td><td>1</td><td>융스타일</td><td></td></tr>
+                <tr><td>8. 안방</td><td>2구 스위치</td><td>2</td><td>융스타일</td><td>2+2 구성으로 4구 역할</td></tr>
+                <tr class="group-start-row"><td>9. 공용욕실</td><td>80x80 프레임</td><td>1</td><td>융스타일</td><td></td></tr>
+                <tr><td>9. 공용욕실</td><td>3구 스위치</td><td>1</td><td>융스타일</td><td>환풍기, 간접, 다운라이트 제어</td></tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+</html>

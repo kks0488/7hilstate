@@ -4,152 +4,241 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[프로젝트명: 흥덕 힐스테이트 아파트] 전기/조명 설비 공사 작업지시서</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-primary: #222;
-            --color-text: #222;
+            --color-primary: #005A9C; /* 현대 힐스테이트 브랜드 컬러 */
+            --color-text: #333;
+            --color-text-light: #666;
             --color-bg: #fff;
+            --color-bg-subtle: #f8f9fa;
+            --color-border: #e9ecef;
+            --color-accent-info: #e7f5ff;
+            --color-accent-warning: #fff9e6;
+            --font-main: 'Noto Sans KR', sans-serif;
         }
         body {
-            font-family: 'Noto Sans KR', sans-serif;
-            line-height: 1.6;
+            font-family: var(--font-main);
+            line-height: 1.7;
             color: var(--color-text);
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #f4f6f8;
         }
         .container {
             max-width: 1200px;
             margin: 40px auto;
-            padding: 30px;
+            padding: 40px;
             background-color: var(--color-bg);
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
         }
         h1 {
             color: var(--color-primary);
             text-align: center;
             margin-bottom: 30px;
             font-weight: 700;
-            font-size: 2.4em;
+            font-size: 2.2em;
+            letter-spacing: -0.02em;
         }
         h2 {
             color: var(--color-text);
-            border-bottom: 1px solid rgba(0,0,0,0.12);
-            padding-bottom: 10px;
-            margin-top: 40px;
-            margin-bottom: 20px;
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 12px;
+            margin-top: 50px;
+            margin-bottom: 24px;
             font-weight: 700;
-            font-size: 1.5em;
+            font-size: 1.6em;
             letter-spacing: -0.01em;
         }
         h3 {
             color: var(--color-primary);
-            margin-top: 30px;
-            margin-bottom: 12px;
-            font-weight: 700;
-            font-size: 1.1em;
-            letter-spacing: -0.01em;
+            margin:0 0 16px;
+            padding-bottom:12px;
+            border-bottom:1px solid var(--color-border);
+            font-size:1.25em;
         }
-        p { margin-bottom: 10px; font-size: 1.05em; }
+        p { margin-bottom: 12px; font-size: 1.0em; color: var(--color-text-light); }
         ul { list-style: none; padding-left: 0; }
-        .section ul li {
-            background: rgba(0,0,0,0.03);
-            margin-bottom: 8px;
-            padding: 12px 16px;
-            border-radius: 8px;
-            display: flex;
-            align-items: flex-start;
-            font-size: 1.02em;
-        }
-        .section ul li strong { color: var(--color-text); margin-right: 10px; flex-shrink: 0; }
-        .caption { font-size: 0.9em; color: rgba(0,0,0,0.55); margin-top: 10px; }
-        .subsection-divider { border: 0; height: 1px; background-color: rgba(0,0,0,0.1); margin: 30px 0; }
 
         /* Header & Footer */
         .header, .footer {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px 30px;
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .header { border-bottom: 1px solid rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .footer { margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.1); font-size: 0.9em; color: #888; }
-        .brand-logo { font-weight: bold; font-size: 1.2em; }
+        .header { border-bottom: 1px solid var(--color-border); }
+        .footer { margin-top: 40px; border-top: 1px solid var(--color-border); font-size: 0.9em; color: #999; }
+        .brand-logo { font-weight: bold; font-size: 1.2em; color: var(--color-primary); }
 
         /* Project Meta */
         .project-meta {
-            border: 1px solid rgba(0,0,0,0.1);
+            background-color: var(--color-bg-subtle);
+            border: 1px solid var(--color-border);
             border-radius: 10px;
-            padding: 20px;
+            padding: 24px;
             margin-top: 20px;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
         .meta-item { display: flex; flex-direction: column; }
-        .meta-item .label { font-size: 0.9em; color: #888; margin-bottom: 5px; }
-        .meta-item .value { font-weight: bold; }
+        .meta-item .label { font-size: 0.9em; color: var(--color-text-light); margin-bottom: 5px; }
+        .meta-item .value { font-weight: 500; font-size: 1.05em; }
 
-        /* Sections */
-        .section { border-left: 5px solid rgba(0,0,0,0.08); padding-left: 14px; }
-
-        /* Custom Styles from Carpentry */
+        /* Main Task Layout */
         .task-container { display:flex; flex-direction:column; gap:30px; margin-top:20px; }
         .task-item {
-            background:#fff;
+            background: var(--color-bg);
             border-radius:12px;
-            border:1px solid #e9e9e9;
-            padding:30px;
-            display:grid;
-            grid-template-columns:1fr;
-            gap:24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: box-shadow 0.3s ease;
+            border:1px solid var(--color-border);
+            padding: 30px;
+            display:flex; /* Changed to flex column */
+            flex-direction:column; /* Changed to flex column */
+            gap: 24px;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .task-item:hover {
-             box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            border-color: #cce3f5;
+            box-shadow: 0 8px 24px rgba(0, 90, 156, 0.08);
         }
-        @media (min-width: 768px) {
-            .task-item { grid-template-columns:1fr 500px; align-items:flex-start; }
+        .task-content ul { list-style-type: none; padding: 0; }
+        .task-content > ul > li { margin-bottom: 12px; }
+
+        .category-item > b {
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 8px;
+            font-size: 1.05em;
         }
-        .task-item h3 { margin:0 0 12px; padding-bottom:12px; border-bottom:1px solid #e5e5e5; font-size:1.15em; color:var(--color-primary); }
-        .task-item > .task-content > ul { list-style-type: '– '; list-style-position: inside; padding-left: 0; }
-        .task-item > .task-content > ul > li { background:transparent; padding:4px 0; margin:0; border-radius:0; font-size:.95em; }
-        .task-image-placeholder { width:100%; border-radius:8px; border:1px solid #ddd; padding:6px; background:#fff; box-sizing:border-box; }
-        .task-image-placeholder img { width:100%; display:block; border-radius:5px; background-color:#f5f5f5; min-height:150px; }
-        .full-plan-image { padding:20px; background:#fdfdfd; border:1px solid #eee; border-radius:10px; margin-bottom: 24px; }
+        .details-list {
+            list-style-type: '–  ';
+            padding-left: 20px;
+            margin-top: 8px;
+            border-left: 3px solid var(--color-border);
+            padding: 8px 0 8px 15px;
+        }
+        .details-list li { margin-bottom: 6px; }
+
+        .task-image-placeholder {
+            width: 100%;
+            align-self: start;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            order: 1; /* 이미지를 위로 배치 */
+        }
+        .task-image-placeholder img { width: 100%; display: block; background-color: #f5f5f5; min-height: 200px; }
+
+        .full-plan-image {
+            padding:20px;
+            background: var(--color-bg-subtle);
+            border:1px solid var(--color-border);
+            border-radius:10px;
+            margin-bottom: 24px;
+        }
         .full-plan-image img { max-width:100%; display:block; margin:0 auto; border-radius: 8px; }
 
-        .details-list {
-            margin-top: 8px !important;
-            padding-left: 20px !important;
-            background: transparent !important;
-            border-left: 3px solid rgba(0,0,0,0.07);
-            padding-top: 5px !important;
-            padding-bottom: 5px !important;
+        /* Highlight Boxes - 개선된 스타일 */
+        .materials-list, .important-note, .coop-note {
+            margin-top: 16px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            border: 1px solid;
         }
-        .details-list strong {
-            color: #444;
+        .materials-list {
+            background-color: var(--color-accent-info);
+            border-color: #bde0fe;
         }
-        .category-item {
+        .important-note {
+            background-color: var(--color-accent-warning);
+            border-color: #ffecb5;
+        }
+        .coop-note {
+            background-color: #e6f7e8;
+            border-color: #c7e8ca;
+        }
+        .materials-list::before { content: '📋 '; font-weight: bold; }
+        .important-note::before { content: '⚠️ '; font-weight: bold; }
+        .coop-note::before { content: '🤝 '; font-weight: bold; }
+
+        /* Print Button */
+        .print-btn {
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
             margin-top: 15px;
+            float: right;
         }
-        .task-item > .task-content > ul > .category-item:first-child {
-            margin-top: 0;
+        .print-btn:hover {
+            background-color: #00487c;
         }
+
+        /* General Info Sections */
+        .info-section {
+            padding: 15px 20px;
+            background-color: var(--color-bg-subtle);
+            border-left: 4px solid var(--color-primary);
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .info-section p { color: var(--color-text); margin: 0; }
+        .info-section ul { list-style-type: '✓ '; padding-left: 25px; margin-top: 15px;}
+        .info-section ul li { padding-left: 10px; margin-bottom: 8px; }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .container { margin: 20px auto; padding: 20px; border-radius: 0; }
+            .container { margin: 0 auto; padding: 20px; border-radius: 0; box-shadow: none; }
             h1 { font-size: 1.8em; }
-            h2 { font-size: 1.3em; }
-            p, li { font-size: 0.98em; }
-            .project-meta { grid-template-columns: 1fr; }
-            .header, .footer { flex-direction: column; gap: 10px; padding: 15px; text-align: center; }
+            h2 { font-size: 1.4em; }
+            h3 { font-size: 1.15em; }
+            .project-meta { grid-template-columns: 1fr; padding: 16px; }
+            .task-item { padding: 20px; }
+            .header, .footer { flex-direction: column; gap: 10px; padding: 15px 20px; text-align: center; }
+        }
+
+        /* Print-specific Styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .printable, .printable * {
+                visibility: visible;
+            }
+            .printable {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                padding: 15mm !important;
+                box-sizing: border-box;
+                border: none !important;
+                box-shadow: none !important;
+                font-size: 10pt;
+            }
+            .printable h3 {
+                page-break-after: avoid;
+            }
+            .printable .task-image-placeholder {
+                page-break-inside: avoid;
+            }
+            .printable .materials-list, .printable .important-note, .printable .coop-note {
+                page-break-inside: avoid;
+            }
+            .print-btn {
+               display: none !important;
+            }
         }
     </style>
 </head>
@@ -168,7 +257,7 @@
             </div>
             <div class="meta-item">
                 <span class="label">작업일정</span>
-                <span class="value">9월 30일</span>
+                <span class="value">10월 1일 ~ 10월 2일</span>
             </div>
             <div class="meta-item">
                 <span class="label">현장</span>
@@ -176,15 +265,13 @@
             </div>
             <div class="meta-item">
                 <span class="label">담당자</span>
-                <span class="value">권성의 전기기사팀</span>
+                <span class="value">이레전기조명</span>
             </div>
             <div class="meta-item">
                 <span class="label">작성일</span>
                 <span class="value">2025년 9월 14일</span>
             </div>
         </div>
-
-        <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)); margin: 40px 0;">
 
         <h2>I. 전기 배선 계획 도면</h2>
         <div class="full-plan-image">
@@ -197,92 +284,189 @@
                 <div class="task-content">
                     <h3>1. 현관</h3>
                     <ul>
-                        <li>기존 현관 열림 센서 배선 연장 (신설 가벽으로 이동)</li>
-                        <li>기존 도어벨 배선 연장 (신설 가벽으로 이동)</li>
-                        <li>천장: 2인치 다운라이트 3개소 타공 및 배선</li>
-                        <li>신발장 하부: T5 간접조명 설치를 위한 전원선 인출</li>
+                        <li class="category-item"><b>조명</b>
+                            <ul class="details-list">
+                                <li>천장 2인치 다운라이트 3개소 타공/배선
+                                    <ul style="list-style-type: '- '; padding-left: 20px; margin-top: 5px;">
+                                        <li>위치 1: 복도 중앙선</li>
+                                        <li>위치 2: 라인 맞춰서 신발장 쪽</li>
+                                        <li>위치 3: 라인 맞춰서 현관문 근접</li>
+                                    </ul>
+                                </li>
+                                <li>신발장 하부: T5 간접조명 설치를 위한 전원선 인출</li>
+                                <li><b>조명 제어:</b> 히든 센서를 설치하여 자동 점소등</li>
+                            </ul>
+                        </li>
+                        <li class="category-item"><b>콘센트</b>
+                            <ul class="details-list">
+                                <li>기존 콘센트 교체: 1구 클릭 매립박스 적용</li>
+                            </ul>
+                        </li>
+                        <li class="category-item"><b>기타 배선 이전</b>
+                             <ul class="details-list">
+                                <li>기존 현관 열림 센서 배선 연장 (신설 가벽으로 이동)</li>
+                                <li>기존 도어벨 배선 연장 (신설 가벽으로 이동)</li>
+                            </ul>
+                        </li>
                     </ul>
+                    <div class="materials-list"><b>필요 자재:</b> 매립박스 1개 (콘센트), 1구 프레임 1개.</div>
                 </div>
                 <div class="task-image-placeholder">
                     <img src="images/전기/현관부.png" alt="현관 전기배선도">
                 </div>
             </div>
+
             <div class="task-item">
                 <div class="task-content">
                     <h3>2. 발코니룸</h3>
                     <ul>
-                        <li>커튼박스: T5 간접조명 설치를 위한 전원선 인출</li>
-                        <li>좌측 벽면: 2인치 다운라이트 2개소 타공 및 배선</li>
-                        <li>기존 스위치 이전: 신설 가벽 위치로 이동 및 배선</li>
-                        <li>우측 벽면: 2인치 다운라이트 3개소 타공 및 배선</li>
+                         <li class="category-item"><b>조명 (3회로 분리)</b>
+                            <ul class="details-list">
+                                <li><b>회로 1:</b> 커튼박스 T5 간접조명</li>
+                                <li><b>회로 2:</b> 좌측 벽면 2인치 다운라이트 2개소</li>
+                                <li><b>회로 3:</b> 우측 벽면 2인치 다운라이트 3개소 (※ 현장 협의 후 2개로 변경 가능)</li>
+                            </ul>
+                        </li>
+                        <li class="category-item"><b>스위치</b>
+                            <ul class="details-list">
+                                <li>신설 가벽 위치로 이전, 3구 스위치(융스타일) 설치</li>
+                            </ul>
+                        </li>
+                        <li class="category-item"><b>콘센트 및 통신</b>
+                            <ul class="details-list">
+                                <li><b>좌측 (기존):</b> 1구 콘센트 1개소 유지</li>
+                                <li><b>우측 (신설):</b> 1구 클릭 매립 콘센트 3개소 'ㄷ'자 형태로 신설</li>
+                                <li><b>랜선:</b> 기존 포트 우측 가벽으로 이전 설치 (※ 추가 신설 가능 여부 현장 확인)</li>
+                            </ul>
+                        </li>
                     </ul>
+                    <div class="materials-list"><b>필요 자재:</b> 매립박스 5개 (콘센트 4, 스위치 1), 3구 스위치 프레임 1개.</div>
                 </div>
                 <div class="task-image-placeholder">
                     <img src="images/전기/발코니룸.png" alt="발코니룸 전기배선도">
                 </div>
             </div>
+
             <div class="task-item">
                 <div class="task-content">
                     <h3>3. 복도</h3>
                     <ul>
-                        <li>3로 스위치 교체 (융스타일 스위치)
-                            <ul style="margin-top:5px; padding-left: 20px; background: transparent;">
-                                <li>거실/주방 스위치 패널에 통합 설치 예정</li>
+                        <li class="category-item"><b>조명</b>
+                            <ul class="details-list">
+                                <li>천장: 2인치 다운라이트 4개소 타공/배선 (주백색, 4000K)</li>
                             </ul>
                         </li>
-                        <li>2인치 다운라이트 3개소 타공 및 배선</li>
-                        <li>일괄 소등 스위치 교체 (융스타일 스위치)</li>
+                        <li class="category-item"><b>스위치</b>
+                            <ul class="details-list">
+                                <li>기존 스위치 박스를 활용하여 2구 스위치(융스타일) 설치
+                                    <ul style="list-style-type: '- '; padding-left: 20px; margin-top: 5px;">
+                                        <li><b>1번 스위치:</b> 복도 조명 제어 (3로 기능)</li>
+                                        <li><b>2번 스위치:</b> 일괄 소등 기능</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
+                    <div class="materials-list"><b>필요 자재:</b> 매립박스 1개, 2구 스위치 프레임 1개.</div>
                 </div>
                 <div class="task-image-placeholder">
                     <img src="images/전기/복도.png" alt="복도 전기배선도">
                 </div>
             </div>
+
             <div class="task-item">
                 <div class="task-content">
                     <h3>4. 아드님방</h3>
                     <ul>
-                        <li>커튼박스: T5 간접조명 설치를 위한 전원선 인출</li>
-                        <li>천장: 2인치 다운라이트 3개소 타공 및 배선
-                            <ul style="margin-top:5px; padding-left: 20px; background: transparent;">
-                                <li>※ 현장 상황에 따라 입구 쪽 1개소 추가하여 총 4개소가 될 수 있음 (현장 협의)</li>
+                        <li class="category-item"><b>조명 (2회로 분리, 전체 3000K 전구색)</b>
+                            <ul class="details-list">
+                                <li><b>회로 1:</b> 커튼박스 T5 간접조명</li>
+                                <li><b>회로 2:</b> 2인치 다운라이트 4개소
+                                    <ul style="list-style-type: '- '; padding-left: 20px; margin-top: 5px;">
+                                        <li>옷장 앞 2개소</li>
+                                        <li>침대 발치 쪽 2개소</li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
-                        <li>스위치: 붙박이장 측면에 설치 (상세 위치 현장 협의)</li>
+                        <li class="category-item"><b>스위치</b>
+                            <ul class="details-list">
+                                <li>붙박이장 측면에 2구 스위치(융스타일) 설치 (상세 위치 현장 협의)</li>
+                            </ul>
+                        </li>
+                        <li class="category-item"><b>콘센트 및 전원</b>
+                            <ul class="details-list">
+                                <li>사용자용 2구 콘센트 1개소 신설 (위치 현장 협의)</li>
+                                <li>옷장 간접조명/가구 상부용 전원선 1개소 인출</li>
+                            </ul>
+                        </li>
                     </ul>
+                    <div class="materials-list"><b>필요 자재:</b> 매립박스 2개 (스위치 1, 콘센트 1), 2구 스위치 프레임 1개.</div>
                 </div>
                 <div class="task-image-placeholder">
                     <img src="images/전기/아드님방.png" alt="아드님방 전기배선도">
                 </div>
             </div>
+            
             <div class="task-item">
                 <div class="task-content">
                     <h3>5. 게스트룸</h3>
                     <ul>
-                        <li>커튼박스: T5 간접조명 설치를 위한 전원선 인출</li>
-                        <li>천장: 2인치 다운라이트 4개소 타공 및 배선</li>
+                        <li class="category-item"><b>조명 (전체 3000K 전구색)</b>
+                            <ul class="details-list">
+                                <li>커튼박스: T5 간접조명 설치를 위한 전원선 인출</li>
+                                <li>천장 2인치 다운라이트 4개소 타공/배선
+                                    <ul style="list-style-type: '- '; padding-left: 20px; margin-top: 5px;">
+                                        <li>옷장 앞 균일하게 3개소</li>
+                                        <li>침대 발치(입구) 쪽 1개소</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="category-item"><b>콘센트</b>
+                            <ul class="details-list">
+                                <li>침대 머리맡: 1구 콘센트 1개소 신설</li>
+                            </ul>
+                        </li>
                     </ul>
+                    <div class="materials-list"><b>필요 자재:</b> 매립박스 1개 (콘센트).</div>
                 </div>
                 <div class="task-image-placeholder">
                     <img src="images/전기/게스트룸.png" alt="게스트룸 전기배선도">
                 </div>
             </div>
+
             <div class="task-item">
                 <div class="task-content">
                     <h3>6. 공용욕실</h3>
                     <ul>
-                        <li>우측 간접조명 전원선 인출</li>
-                        <li>천장 2인치 다운라이트 3개소 전원선 인출</li>
-                        <li>환풍기 전원선 인출</li>
-                        <ul class="details-list">
-                            <li><strong>※ 협조사항:</strong> 욕실 내 조명/환풍기 설치는 욕실팀에서 진행. 전체적인 라인을 맞추기 위해 스위치 설치 및 최종 결선은 전기팀에서 담당합니다.</li>
-                        </ul>
+                        <li class="category-item"><b>조명 및 환풍기</b>
+                            <ul class="details-list">
+                                <li>우측 간접조명 전원선 인출</li>
+                                <li>천장 2인치 다운라이트 3개소 전원선 인출</li>
+                                <li>환풍기 전원선 인출</li>
+                            </ul>
+                        </li>
+                        <li class="category-item"><b>콘센트/전원</b>
+                            <ul class="details-list">
+                                <li>매립 콘센트 2개소 신설
+                                    <ul style="list-style-type: '- '; padding-left: 20px; margin-top: 5px;">
+                                        <li>위치 1: 변기 우측</li>
+                                        <li>위치 2: 젠다이</li>
+                                    </ul>
+                                </li>
+                                <li>수건장 내부 전원선 인출</li>
+                            </ul>
+                        </li>
                     </ul>
+                     <div class="materials-list"><b>필요 자재:</b> 매립박스 2개 (콘센트).</div>
+                     <div class="coop-note"><b>협조사항:</b> 욕실 내 조명/환풍기 설치는 욕실팀에서 진행합니다. 전체적인 라인을 맞추기 위해 스위치 설치 및 최종 결선은 전기팀에서 담당합니다.</div>
                 </div>
                 <div class="task-image-placeholder">
                     <img src="images/전기/공용욕실.png" alt="공용욕실 전기배선도">
                 </div>
             </div>
+
             <div class="task-item">
                 <div class="task-content">
                     <h3>7. 주방</h3>
@@ -293,13 +477,20 @@
                                 <li>아일랜드 인덕션 상부: 2인치 다운라이트 4개소</li>
                                 <li>식탁 상부: 2인치 다운라이트 2~3개소 (※ 현장 협의 후 확정)</li>
                                 <li>냉장고장 상부: 2인치 다운라이트 2~3개소 (※ 현장 협의 후 확정)</li>
+                                <li>커튼박스: T5 간접조명용 배선</li>
                             </ul>
                         </li>
                         <li class="category-item"><b>스위치</b>
                             <ul class="details-list">
+                                <li><b>위치:</b> 주방 입구 가벽에 3구 스위치(융스타일) 신설</li>
+                                <li><b>회로 구성:</b>
+                                    <ul style="list-style-type: '- '; padding-left: 20px; margin-top: 5px;">
+                                        <li>스위치 1: 작업등 (싱크대 마그네틱 + 아일랜드 다운라이트)</li>
+                                        <li>스위치 2: 무드등 (커튼박스 간접조명 + 냉장고장 다운라이트)</li>
+                                        <li>스위치 3: 식탁등</li>
+                                    </ul>
+                                </li>
                                 <li>실외기실 스위치 이전: (우측 → 좌측 벽으로)</li>
-                                <li><strong>※ 참고:</strong> 스마트 스위치 설치를 위해 모든 주방 스위치 박스에 중성선 인입 필수</li>
-                                <li><strong>※ 제어 방식:</strong> 모든 주방 조명은 거실과 통합된 단일 제어 패널에서 제어 예정</li>
                             </ul>
                         </li>
                         <li class="category-item"><b>콘센트/전원</b>
@@ -307,14 +498,19 @@
                                 <li>싱크대 양옆: 벽면 콘센트 각 1개소 신설</li>
                                 <li>인덕션: 단독 회로 전용 배선</li>
                                 <li>아일랜드 식탁: 상판 타공 및 전원 인출</li>
+                                <li>식탁 위치: 2구 콘센트 1개소 신설</li>
                             </ul>
                         </li>
                     </ul>
+                    <div class="important-note"><b>중성선 (중요):</b> 스마트 스위치 설치를 위해 스위치 박스에 중성선 인입 필수</div>
+                    <div class="important-note"><b>냉장고 전원 (중요):</b> 기존 콘센트 위치를 냉장고장 상부로 올려서 배선. (※ 냉장고가 앞으로 튀어나오지 않도록 주의)</div>
+                    <div class="materials-list"><b>필요 자재:</b> 매립박스 3개 (스위치 1, 콘센트 2), 3구 스위치 프레임 1개.</div>
                 </div>
                 <div class="task-image-placeholder">
                     <img src="images/전기/주방.png" alt="주방 전기배선도">
                 </div>
             </div>
+
             <div class="task-item">
                 <div class="task-content">
                     <h3>8. 거실</h3>
@@ -322,85 +518,114 @@
                         <li class="category-item"><b>보일러 온도조절기 이전</b>
                             <ul class="details-list">
                                 <li>위치: TV월 → 거실 좌측 후면 기둥</li>
-                                <li>배선: UTP Cat6 연장 (※자재 제공)</li>
+                                <li>배선: UTP Cat6 연장 (※자재 제공, 중성선 인입 필요)</li>
                             </ul>
                         </li>
-                        <li class="category-item"><b>조명</b>
+                        <li class="category-item"><b>조명 (3회로 분리)</b>
                             <ul class="details-list">
-                                <li>우물천장: 스트립 간접조명용 배선</li>
-                                <li>커튼박스: T5 간접조명용 배선 및 전원선 인입</li>
-                                <li>다운라이트 (2인치): TV월 양측 각 2개, 후면벽 양측 각 3개</li>
+                                <li><b>회로 1:</b> TV월 양측 다운라이트 (2인치, 총 4개)</li>
+                                <li><b>회로 2:</b> 후면벽(소파벽) 양측 다운라이트 (2인치, 총 6개)</li>
+                                <li><b>회로 3:</b> 전체 간접조명 (우물천장 스트립 + 커튼박스 T5)</li>
+                                <li>커튼박스 내 전동커튼용 전원선 1개소 인출</li>
                             </ul>
                         </li>
                         <li class="category-item"><b>스위치</b>
                             <ul class="details-list">
-                                <li><strong>※ 참고:</strong> 스마트 스위치 설치를 위해 모든 거실 스위치 박스에 중성선 인입 필수</li>
-                                <li><strong>※ 제어 방식:</strong> 모든 거실 조명은 주방과 통합된 단일 제어 패널에서 제어 예정</li>
+                                <li>주방-거실 통합 제어 스위치 위치: 현관 복도 끝나는 지점 (주방 입구 가벽)</li>
+                                <li>구성: 상기 3개 회로를 제어하는 3구 스위치(융스타일) 설치</li>
                             </ul>
                         </li>
-                        <li class="category-item"><b>TV월 배선</b>
+                        <li class="category-item"><b>콘센트 및 전원</b>
                             <ul class="details-list">
-                                <li>전원선: 반매립벽 양측 콘센트 설치를 위해 충분한 길이로 인출</li>
+                                <li><b>TV월:</b> 반매립벽 안쪽 'ㄱ'자 꺾이는 부분에 1구 콘센트 은닉 설치</li>
+                                <li><b>후면벽(소파벽) 중앙:</b> 3구 프레임 (콘센트 2구 + 랜선 1구) 교체 설치</li>
+                                <li><b>후면벽(소파벽) 중앙-좌측 사이:</b> 1구 콘센트 신설</li>
+                                <li><b>후면벽(소파벽) 좌측 기둥 옆:</b> 2구 콘센트 신설</li>
                                 <li>스피커선: 기존 배선을 반매립벽 내부로 매립</li>
                             </ul>
                         </li>
                     </ul>
+                    <div class="important-note"><b>중성선 (중요):</b> 스마트 스위치 설치를 위해 거실/주방 모든 스위치 박스에 중성선 인입 필수</div>
+                    <div class="materials-list"><b>필요 자재:</b> 매립박스 8개 (스위치 1, 콘센트 7), 1구 프레임 2개, 2구 프레임 1개, 3구 프레임 1개, 3구 스위치 프레임 1개.</div>
                 </div>
                 <div class="task-image-placeholder">
                     <img src="images/전기/거실.png" alt="거실 전기배선도">
                 </div>
             </div>
+
             <div class="task-item">
                 <div class="task-content">
                     <h3>9. 안방</h3>
                     <ul>
-                        <li class="category-item"><b>조명 및 회로 분리</b>
+                        <li class="category-item"><b>조명 (2회로)</b>
                             <ul class="details-list">
-                                <li>회로 1: 커튼박스 T5 간접조명</li>
-                                <li>회로 2: 침대 양옆 2인치 다운라이트</li>
-                                <li>회로 3: TV벽 2인치 다운라이트</li>
+                                <li><b>회로 1 (무드/주 조명):</b> TV 쪽 다운라이트 2개 + 커튼박스 T5 간접조명</li>
+                                <li><b>회로 2 (보조/독서등):</b> 침대 헤드 옆 다운라이트 2개 (※ 눈부심 없도록 침대 헤드보다 약간 옆으로 설치)</li>
                             </ul>
                         </li>
                         <li class="category-item"><b>스위치</b>
                             <ul class="details-list">
-                                <li>위치: 출입문 좌측 벽</li>
-                                <li>구성: 상기 3개 회로를 제어하는 3구 스위치 설치</li>
+                                <li><b>위치 (안방 입구):</b> 2구 스위치(융스타일) 설치
+                                    <ul style="list-style-type: '- '; padding-left: 20px; margin-top: 5px;">
+                                        <li>버튼 1: 회로 1 제어</li>
+                                        <li>버튼 2: 회로 2 제어</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="category-item"><b>콘센트</b>
+                            <ul class="details-list">
+                                <li>침대 헤드 양쪽에 1구 콘센트 각 1개소 신설</li>
                             </ul>
                         </li>
                     </ul>
+                    <div class="materials-list"><b>필요 자재:</b> 매립박스 3개 (스위치 1, 콘센트 2), 2구 스위치 프레임 1개.</div>
                 </div>
                 <div class="task-image-placeholder">
                     <img src="images/전기/안방.png" alt="안방 전기배선도">
                 </div>
             </div>
+
             <div class="task-item">
                 <div class="task-content">
                     <h3>10. 드레스룸</h3>
                     <ul>
-                        <li>천장: 2인치 다운라이트 3개소 타공 및 배선</li>
+                        <li class="category-item"><b>조명</b>
+                            <ul class="details-list">
+                                <li>천장: 2인치 다운라이트 3개소 타공 및 배선</li>
+                            </ul>
+                        </li>
                         <li class="category-item"><b>스위치</b>
                             <ul class="details-list">
-                                <li>안방욕실 스위치와 통합하여 제어</li>
-                                <li>기존 4구 → 가로형 4구 융스타일 스위치(2+2 구성)로 교체</li>
+                                <li><b>드레스룸/안방욕실 통합 스위치:</b> 기존 4구 박스를 활용하여 융스타일 가로형 2프레임 스위치 설치. <strong>(2구+2구 또는 3구+1구 구성)</strong></li>
+                                <li><b>다용도실 스위치:</b> 다용도실 조명 제어를 위해 1구 클릭 스위치 신설</li>
                             </ul>
                         </li>
                     </ul>
+                    <div class="materials-list"><b>필요 자재:</b> 매립박스 1개 (다용도실 스위치), 1구 스위치 프레임 1개. (기존 4구 박스는 재사용)</div>
                 </div>
                 <div class="task-image-placeholder">
                     <img src="images/전기/드레스룸.png" alt="드레스룸 전기배선도">
                 </div>
             </div>
+
             <div class="task-item">
                 <div class="task-content">
                     <h3>11. 안방욕실</h3>
-                    <ul>
-                        <li><b>스위치:</b> 드레스룸과 통합된 제어 패널 사용 (상세 내용은 드레스룸 섹션 참조)</li>
-                        <li>샤워부: 간접조명용 전원선 인출</li>
-                        <li>천장: 2인치 다운라이트 3개소 전원선 인출</li>
-                        <ul class="details-list">
-                            <li><strong>※ 협조사항:</strong> 욕실 내 조명 설치 및 1차 결선은 욕실팀에서 진행. 전기팀은 작업 전반을 점검하고 통합 스위치와의 최종 연동을 확인합니다.</li>
-                        </ul>
+                     <ul>
+                        <li class="category-item"><b>스위치</b>
+                            <ul class="details-list">
+                                <li>드레스룸과 통합된 제어 패널 사용 (상세 내용은 드레스룸 섹션 참조)</li>
+                            </ul>
+                        </li>
+                        <li class="category-item"><b>조명</b>
+                            <ul class="details-list">
+                                <li>샤워부: 간접조명용 전원선 인출</li>
+                                <li>천장: 2인치 다운라이트 3개소 전원선 인출</li>
+                            </ul>
+                        </li>
                     </ul>
+                    <div class="coop-note"><b>협조사항:</b> 욕실 내 조명 설치 및 1차 결선은 욕실팀에서 진행합니다. 전기팀은 작업 전반을 점검하고 통합 스위치와의 최종 연동을 확인합니다.</div>
                 </div>
                 <div class="task-image-placeholder">
                     <img src="images/전기/안방욕실.png" alt="안방욕실 전기배선도">
@@ -409,10 +634,8 @@
         </div>
 
         <h2>III. 현장 최종 협의 필요사항</h2>
-        <p style="padding: 10px 15px; background-color: #f8f9fa; border-radius: 5px; margin-bottom: 15px; font-size: 0.95em;">
-            아래 사항들은 저희가 중요하게 생각하는 부분들이며, 현장 상황에 맞춰 기사님의 전문적인 판단 하에 최적의 방법으로 시공해주시길 부탁드립니다. 함께 논의하며 최종 결정하면 좋겠습니다.
-        </p>
-        <div class="section">
+        <div class="info-section">
+            <p>아래 사항들은 저희가 중요하게 생각하는 부분들이며, 현장 상황에 맞춰 기사님의 전문적인 판단 하에 최적의 방법으로 시공해주시길 부탁드립니다. 함께 논의하며 최종 결정하면 좋겠습니다.</p>
             <ul>
                 <li>모든 다운라이트의 정확한 타공 위치 및 간격</li>
                 <li>스위치 및 콘센트의 최종 설치 높이 (기본 스위치 H:1200mm / 콘센트 H:20cm 기준)</li>
@@ -423,25 +646,23 @@
         </div>
 
         <h2>IV. 전체 공사 참고사항</h2>
-        <p style="padding: 10px 15px; background-color: #f8f9fa; border-radius: 5px; margin-bottom: 15px; font-size: 0.95em;">
-            원활하고 안전한 작업을 위해 아래 내용들을 함께 참고해주시면 감사하겠습니다. 현장은 마감재 시공 전 상태로 비교적 편하게 작업하실 수 있는 환경입니다. 다만 최종 마감 후의 모습을 고려하여 작업해주시면 더욱 완성도 높은 결과가 나올 것 같습니다.
-        </p>
-        <div class="section">
-            <ul>
-                <li><strong>안전 규정 준수</strong>: 모든 작업은 KC 전기설비규정을 포함한 관련 법규 및 안전 수칙을 철저히 준수하여 진행합니다.</li>
-                <li><strong>전선 사양</strong>:
-                    <ul class="details-list">
+        <div class="info-section">
+            <p>원활하고 안전한 작업을 위해 아래 내용들을 함께 참고해주시면 감사하겠습니다. 현장은 마감재 시공 전 상태로 비교적 편하게 작업하실 수 있는 환경입니다. 다만 최종 마감 후의 모습을 고려하여 작업해주시면 더욱 완성도 높은 결과가 나올 것 같습니다.</p>
+             <ul>
+                <li><b>안전 규정 준수</b>: 모든 작업은 KC 전기설비규정을 포함한 관련 법규 및 안전 수칙을 철저히 준수하여 진행합니다.</li>
+                <li><b>전선 사양</b>:
+                    <ul style="list-style-type: '› '; padding-left: 20px;">
                         <li>콘센트 및 전등 회로: HFIX (저독성 난연 폴리올레핀) 2.5sq 사용을 원칙으로 합니다.</li>
                         <li>고용량 기기(인덕션 등): HFIX 4.0sq 이상의 규격 전선을 사용합니다.</li>
                         <li>전선 색상: 접지(녹색), 중성선(청색), Hot Line(갈색/흑색/회색) 규정을 준수합니다.</li>
                     </ul>
                 </li>
-                <li><strong>중성선 입선</strong>: 추후 스마트 스위치 및 IoT 기기 설치를 위해, 거실과 주방 조명 제어용 스위치 박스 내부에 중성선 인입을 부탁드립니다.</li>
-                <li><strong>수평/수직</strong>: 모든 스위치, 콘센트, 조명 타공 위치는 레이저 레벨기를 사용하여 정확한 수평과 수직을 맞춰주시길 바랍니다.</li>
-                <li><strong>콘센트 높이</strong>: 별도 지정이 없는 모든 콘센트는 바닥 마감선 기준 20cm 높이에 하단을 맞춰 시공을 부탁드립니다.</li>
-                <li><strong>위치 협의</strong>: 본 지시서에 명기된 치수가 현장 상황과 맞지 않거나 애매한 경우, 임의로 판단하시기보다 담당자와 현장 협의 후 작업을 진행해주시면 감사하겠습니다.</li>
-                <li><strong>마감 처리</strong>:
-                    <ul class="details-list">
+                <li><b>중성선 입선</b>: 추후 스마트 스위치 및 IoT 기기 설치를 위해, 거실과 주방 조명 제어용 스위치 박스 내부에 중성선 인입을 부탁드립니다.</li>
+                <li><b>수평/수직</b>: 모든 스위치, 콘센트, 조명 타공 위치는 레이저 레벨기를 사용하여 정확한 수평과 수직을 맞춰주시길 바랍니다.</li>
+                <li><b>콘센트 높이</b>: 별도 지정이 없는 모든 콘센트는 바닥 마감선 기준 20cm 높이에 하단을 맞춰 시공을 부탁드립니다.</li>
+                <li><b>위치 협의</b>: 본 지시서에 명기된 치수가 현장 상황과 맞지 않거나 애매한 경우, 임의로 판단하시기보다 담당자와 현장 협의 후 작업을 진행해주시면 감사하겠습니다.</li>
+                <li><b>마감 처리</b>:
+                     <ul style="list-style-type: '› '; padding-left: 20px;">
                         <li>배관(CD관) 끝부분은 전선 피복이 손상되지 않도록 부드럽게 마감 처리 부탁드립니다.</li>
                         <li>최종 마감재의 두께나 위치를 감안하여 타공 및 배선 위치를 잡아주시면 감사하겠습니다.</li>
                         <li>작업 후 발생한 폐기물은 즉시 정리하고, 주변부 보양에 신경 써주시길 바랍니다.</li>
@@ -450,13 +671,36 @@
             </ul>
         </div>
 
-        <p style="font-size: 0.95em; color: #666; margin-top: 30px; padding: 15px; background-color: rgba(0,0,0,0.04); border-left: 5px solid rgba(0,0,0,0.2); border-radius: 5px;">
-            이상입니다. 본 지시서를 숙지하시고, 문의사항은 즉시 담당자에게 연락 바랍니다. 후속 마감 공정이 아직 진행 전이므로, 보이지 않는 부분까지 꼼꼼하고 완성도 높은 시공을 부탁드립니다. 안전한 시공 부탁드립니다.
-        </p>
+        <div class="info-section" style="border-color: #f0ad4e;">
+            <p>이상입니다. 본 지시서를 숙지하시고, 문의사항은 즉시 담당자에게 연락 바랍니다. 후속 마감 공정이 아직 진행 전이므로, 보이지 않는 부분까지 꼼꼼하고 완성도 높은 시공을 부탁드립니다. 안전한 시공 부탁드립니다.</p>
+        </div>
     </div>
 
     <footer class="footer">
         <div>© 2025 (주) 마크트레이드. All rights reserved.</div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.task-item .task-content').forEach(content => {
+                const printButton = document.createElement('button');
+                printButton.innerText = 'PDF로 저장하기';
+                printButton.classList.add('print-btn');
+                content.appendChild(printButton);
+
+                printButton.addEventListener('click', function() {
+                    const taskItem = this.closest('.task-item');
+                    taskItem.classList.add('printable');
+                    
+                    window.print();
+                    
+                    // Use a timeout to ensure cleanup happens after the print dialog is handled
+                    setTimeout(() => {
+                        taskItem.classList.remove('printable');
+                    }, 500);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
